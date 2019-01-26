@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dp16"
+        android:layout_marginTop="@dimen/dp15"
+        android:orientation="horizontal">
+
+        <View
+            android:layout_width="@dimen/dp2"
+            android:layout_height="@dimen/dp16"
+            android:background="@color/price_red" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="@dimen/dp12"
+            android:text="经验帖"
+            android:textColor="@color/gray_333"
+            android:textSize="@dimen/dp12" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_gravity="center_vertical"
+            android:layout_marginRight="19dp"
+            android:text="编辑"
+            android:textColor="@color/price_red"
+            android:textSize="@dimen/dp12" />
+
+    </RelativeLayout>
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp1"
+        android:layout_marginLeft="@dimen/dp16"
+        android:layout_marginTop="@dimen/dp15"
+        android:layout_marginRight="@dimen/dp16"
+        android:background="@color/gray_5" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_marginLeft="@dimen/dp16"
+        android:layout_marginTop="@dimen/dp14"
+        android:layout_marginRight="@dimen/dp16"
+        android:layout_marginBottom="@dimen/dp10"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="@dimen/dp80"
+            android:layout_height="@dimen/dp80"
+            android:layout_gravity="center_vertical"
+            android:src="@mipmap/test_icon" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="@dimen/dp10"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="艾克里里的考研......"
+                android:textColor="@color/gray_333"
+                android:textSize="15dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp10"
+                android:text="二八法则想必大家都听过，那么。。。。。。。。。。。。"
+                android:textColor="@color/gray_666"
+                android:textSize="@dimen/dp12" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp9"
+                android:text="13123阅读 . 220评论"
+                android:textColor="@color/gray_666"
+                android:textSize="@dimen/dp10" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp10"
+        android:background="@color/gray_5" />
+</LinearLayout>

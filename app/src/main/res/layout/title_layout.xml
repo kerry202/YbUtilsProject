@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/details_head_rl"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/dp44"
+    android:background="@color/white">
+
+    <RelativeLayout
+        android:id="@+id/title_back"
+        android:layout_width="@dimen/dp44"
+        android:layout_height="@dimen/dp44"
+        android:layout_marginLeft="@dimen/dp10">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:src="@mipmap/arrows_icon" />
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/title_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_gravity="center_vertical"
+        android:layout_marginLeft="@dimen/dp15"
+        android:text="@string/send_goods"
+        android:textColor="@color/gray_333"
+        android:textSize="@dimen/dp16"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/title_send"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="@dimen/dp17"
+        android:text="@string/send_str"
+        android:textColor="@color/price_red"
+        android:textSize="@dimen/dp14"
+        android:textStyle="bold" />
+
+</RelativeLayout>

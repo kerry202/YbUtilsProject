@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/next_tv"
+            android:layout_width="@dimen/dp75"
+            android:layout_height="@dimen/dp30"
+            android:layout_gravity="right"
+            android:layout_marginTop="18dp"
+            android:layout_marginRight="18dp"
+            android:background="@drawable/circle_gray_d"
+            android:gravity="center"
+            android:text="@string/skip_str"
+            android:textColor="@color/gray_333"
+            android:textSize="@dimen/dp14" />
+
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/dp23"
+            android:src="@mipmap/login_icon" />
+
+        <EditText
+            android:id="@+id/phone_number"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp52"
+            android:layout_marginTop="@dimen/dp75"
+            android:layout_marginRight="@dimen/dp52"
+            android:background="@null"
+            android:hint="@string/input_phone_str"
+            android:inputType="number"
+            android:maxLength="11"
+            android:textColor="@color/gray_333"
+            android:textSize="@dimen/dp20" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="@dimen/dp52"
+            android:layout_marginTop="@dimen/dp11"
+            android:layout_marginRight="@dimen/dp52"
+            android:background="@color/gray_c" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp52"
+            android:layout_marginTop="15dp"
+            android:layout_marginRight="@dimen/dp52">
+
+            <TextView
+                android:id="@+id/get_code"
+                android:layout_width="@dimen/dp100"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:gravity="center"
+                android:text="@string/get_code_str"
+                android:textColor="@color/gray_c"
+                android:textSize="@dimen/dp14" />
+
+            <View
+                android:id="@+id/line"
+                android:layout_width="@dimen/dp1"
+                android:layout_height="@dimen/dp17"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/dp12"
+                android:layout_marginRight="@dimen/dp12"
+                android:layout_toLeftOf="@id/get_code"
+                android:background="@color/gray_c" />
+
+            <EditText
+                android:id="@+id/code"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toLeftOf="@+id/line"
+                android:background="@null"
+                android:hint="@string/get_code_str"
+                android:inputType="number"
+                android:maxLength="6"
+                android:textColor="@color/gray_333"
+                android:textSize="@dimen/dp20" />
+
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="@dimen/dp52"
+            android:layout_marginTop="@dimen/dp11"
+            android:layout_marginRight="@dimen/dp52"
+            android:background="@color/gray_c" />
+
+        <Button
+            android:id="@+id/login_bt"
+            android:layout_width="@dimen/dp280"
+            android:layout_height="@dimen/dp44"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/dp40"
+            android:background="@drawable/circle_gray_e"
+            android:text="@string/login_str"
+            android:textColor="@color/white" />
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="@dimen/dp25"
+        android:text="@string/agreement_str"
+        android:textColor="@color/gray_999" />
+</RelativeLayout>

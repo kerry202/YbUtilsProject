@@ -1,0 +1,24 @@
+<resources>
+    <string name="app_name">考料</string>
+    <string name="skip_str">跳过</string>
+    <string name="input_phone_str">请输入手机号码</string>
+    <string name="get_code_str">获取验证码</string>
+    <string name="login_str">登陆</string>
+    <string name="agreement_str">注册即表示您已阅读，并同意《用户注册协议》</string>
+    <string name="home_str">首页</string>
+    <string name="me_str">我的</string>
+    <string name="search_str">请输入您要搜索的内容</string>
+    <string name="canclr_str">取消</string>
+    <string name="experience_str">经验帖</string>
+    <string name="consultation_str">1v1咨询</string>
+    <string name="data_str">备考资料</string>
+    <string name="shared_str">转发</string>
+    <string name="colletion_str">收藏</string>
+    <string name="private_msg_str">私信TA</string>
+    <string name="go_buy_str">去购买</string>
+    <string name="add_follow">+关注</string>
+    <string name="okbuy_str">购买确认</string>
+    <string name="test">测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试</string>
+    <string name="send_str">发布</string>
+    <string name="send_goods">发送商品</string>
+</resources>

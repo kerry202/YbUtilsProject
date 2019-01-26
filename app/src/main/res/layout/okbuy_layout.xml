@@ -1,0 +1,345 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/details_head_rl"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp44">
+
+        <RelativeLayout
+            android:id="@+id/okbuy_back"
+            android:layout_width="@dimen/dp44"
+            android:layout_height="@dimen/dp44"
+            android:layout_marginLeft="@dimen/dp10">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:src="@mipmap/arrows_icon" />
+        </RelativeLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="@dimen/dp15"
+            android:text="@string/okbuy_str"
+            android:textColor="@color/gray_333"
+            android:textSize="@dimen/dp16"
+            android:textStyle="bold" />
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp10"
+        android:background="@color/gray_5" />
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp48"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/dp18"
+            android:text="收货人"
+            android:textColor="@color/gray_666"
+            android:textSize="@dimen/dp15" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/dp104"
+            android:layout_marginRight="@dimen/dp16"
+            android:layout_toLeftOf="@+id/line"
+            android:background="@null"
+            android:hint="用户姓名"
+            android:maxLength="6"
+            android:textColor="@color/gray_333"
+            android:textSize="@dimen/dp15" />
+
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="@dimen/dp18"
+        android:layout_marginRight="@dimen/dp16"
+        android:background="@color/gray_5" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp48"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/dp18"
+            android:text="联系电话"
+            android:textColor="@color/gray_666"
+            android:textSize="@dimen/dp15" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/dp104"
+            android:layout_marginRight="@dimen/dp16"
+            android:layout_toLeftOf="@+id/line"
+            android:background="@null"
+            android:hint="15010090621"
+            android:inputType="number"
+            android:maxLength="11"
+            android:textColor="@color/gray_333"
+            android:textSize="@dimen/dp15" />
+
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="@dimen/dp18"
+        android:layout_marginRight="@dimen/dp16"
+        android:background="@color/gray_5" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp48"
+        android:orientation="horizontal"
+        android:visibility="gone">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/dp18"
+            android:text="所在地"
+            android:textColor="@color/gray_666"
+            android:textSize="@dimen/dp15" />
+
+        <TextView
+            android:id="@+id/address_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/dp104"
+            android:layout_marginRight="@dimen/dp16"
+            android:layout_toLeftOf="@+id/line"
+            android:hint="北京 北京市 海定区"
+            android:maxLength="11"
+            android:textColor="@color/gray_333"
+            android:textSize="@dimen/dp15" />
+
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="@dimen/dp18"
+        android:layout_marginRight="@dimen/dp16"
+        android:background="@color/gray_5" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp56"
+        android:layout_marginTop="@dimen/dp15"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp18"
+            android:text="详细地址"
+            android:textColor="@color/gray_666"
+            android:textSize="@dimen/dp15" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp104"
+            android:layout_marginRight="@dimen/dp16"
+            android:layout_toLeftOf="@+id/line"
+            android:background="@null"
+            android:hint="海定区xxxxxxxxxxxxxxxxxxxxx"
+            android:maxLines="2"
+            android:textColor="@color/gray_333"
+            android:textSize="@dimen/dp15" />
+
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:background="@color/gray_5" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp108"
+        android:layout_marginTop="@dimen/dp14">
+
+        <ImageView
+            android:id="@+id/okbuy_icon"
+            android:layout_width="@dimen/dp80"
+            android:layout_height="@dimen/dp80"
+            android:layout_marginLeft="@dimen/dp16"
+            android:src="@mipmap/orange_logo" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/dp11"
+            android:layout_toRightOf="@id/okbuy_icon"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="三本逆袭211北大学姐一对一辅导"
+                android:textColor="@color/gray_333"
+                android:textSize="@dimen/dp15"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp12"
+                android:text="三本逆袭211北大学姐一对一辅导"
+                android:textColor="@color/gray_666"
+                android:textSize="@dimen/dp12" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="19dp"
+                android:text="¥ 299.00 x1"
+                android:textColor="@color/price_red"
+                android:textSize="@dimen/dp12"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginRight="@dimen/dp16"
+            android:layout_marginBottom="@dimen/dp14"
+            android:background="@mipmap/okbuy_bg"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/okbuy_reduce"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"
+                android:src="@mipmap/reduce_icon" />
+
+            <EditText
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"
+                android:background="@null"
+                android:gravity="center"
+                android:hint="10"
+                android:inputType="number"
+                android:textColor="@color/gray_333"
+                android:textSize="@dimen/dp12" />
+
+            <ImageView
+                android:id="@+id/okbuy_add"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"
+                android:src="@mipmap/add_icon" />
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:background="@color/gray_5" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/dp17">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp15"
+            android:text="配送方式"
+            android:textColor="@color/gray_333"
+            android:textSize="@dimen/dp15"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/dp17"
+            android:text="快递 包邮"
+            android:textColor="@color/gray_666"
+            android:textSize="@dimen/dp12" />
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp49"
+            android:layout_alignParentBottom="true">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/dp15"
+                android:text="总计："
+                android:textColor="@color/gray_333"
+                android:textSize="@dimen/dp15"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="62dp"
+                android:text="¥ 299.00 "
+                android:textColor="@color/price_red"
+                android:textSize="@dimen/dp15"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/go_pay"
+                android:layout_width="135dp"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:background="@color/price_red"
+                android:gravity="center"
+                android:text="去支付"
+                android:textColor="@color/white"
+                android:textSize="@dimen/dp15"
+                android:textStyle="bold" />
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+
+</LinearLayout>

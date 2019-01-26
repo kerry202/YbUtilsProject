@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<paths>
+    <external-path
+        name="files_root"
+        path="Android/data/com.example.teprinciple.updateappdemo/" />
+    <external-path
+        name="external_storage_root"
+        path="." />
+    <files-path
+        name="file"
+        path="." />
+    <cache-path
+        name="cache"
+        path="." />
+    <external-path
+        name="external"
+        path="." />
+    <external-files-path
+        name="external_files"
+        path="." />
+    <external-cache-path
+        name="external_cache"
+        path="." />
+    <external-media-path
+        name="external_media"
+        path="." />
+</paths>

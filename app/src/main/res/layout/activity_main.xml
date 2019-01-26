@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.MainActivity">
+
+
+    <LinearLayout
+        android:id="@+id/button_ll"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp48"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/home_tv"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:drawableTop="@mipmap/home_icon"
+            android:gravity="center_horizontal"
+            android:text="@string/home_str" />
+
+        <ImageView
+            android:id="@+id/send_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:src="@mipmap/send_icon" />
+
+        <TextView
+            android:id="@+id/me_tv"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:drawableTop="@mipmap/me_yes_icon"
+            android:gravity="center_horizontal"
+            android:text="@string/me_str" />
+
+
+    </LinearLayout>
+
+    <View
+        android:id="@+id/home_line"
+        android:background="#F2F2F2"
+        android:layout_marginBottom="@dimen/dp48"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/px1"
+        android:layout_alignParentBottom="true" />
+
+    <FrameLayout
+        android:id="@+id/fragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/home_line" />
+
+</RelativeLayout>

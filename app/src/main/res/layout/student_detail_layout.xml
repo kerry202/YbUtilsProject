@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/details_head_rl"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp44"
+        android:layout_marginLeft="@dimen/dp17"
+        android:layout_marginRight="@dimen/dp17"
+        android:background="@color/white">
+
+        <ImageView
+            android:id="@+id/me_set"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:src="@mipmap/arrows_icon" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="@dimen/dp15"
+            android:text="学长详情"
+            android:textColor="@color/gray_333"
+            android:textSize="@dimen/dp16"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/me_msg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:src="@mipmap/home_msg_icon" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dp17"
+        android:layout_marginTop="@dimen/dp25"
+        android:layout_marginRight="@dimen/dp17">
+
+
+        <ImageView
+            android:id="@+id/user_photo"
+            android:layout_width="@dimen/dp71"
+            android:layout_height="@dimen/dp71"
+            android:layout_centerVertical="true"
+            android:scaleType="fitXY"
+            android:src="@mipmap/test_icon" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/dp10"
+            android:layout_toRightOf="@id/user_photo"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/user_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="小明学长"
+                android:textColor="@color/gray_333"
+                android:textSize="@dimen/dp22"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/user_flag"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp10"
+                android:text="立即编辑我的个性签名"
+                android:textColor="@color/gray_999"
+                android:textSize="@dimen/dp12" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/follow_tv"
+            android:layout_width="@dimen/dp56"
+            android:layout_height="@dimen/dp25"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/dp14"
+            android:background="@drawable/circle_red15"
+            android:gravity="center"
+            android:text="+关注"
+            android:textColor="@color/white" />
+
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp1"
+        android:layout_marginTop="@dimen/dp15"
+        android:background="@color/gray_5" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dp16"
+        android:layout_marginTop="@dimen/dp15"
+        android:orientation="horizontal"
+        android:paddingBottom="@dimen/dp15">
+
+        <View
+            android:layout_width="@dimen/dp2"
+            android:layout_height="@dimen/dp11"
+            android:layout_gravity="center_vertical"
+            android:background="@color/price_red" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="@dimen/dp12"
+            android:text="学长发布"
+            android:textColor="@color/gray_333"
+            android:textSize="@dimen/dp14"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/student_recycler"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/gray_5"
+        android:paddingTop="@dimen/dp5" />
+
+</LinearLayout>

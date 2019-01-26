@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="@dimen/dp10"
+    android:layout_marginTop="@dimen/dp10"
+    android:background="@drawable/circle_white"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/dp10">
+
+    <ImageView
+        android:layout_width="@dimen/dp145"
+        android:layout_height="@dimen/dp80"
+        android:layout_gravity="center_horizontal"
+        android:src="@mipmap/orange_logo" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dp18"
+        android:layout_marginRight="@dimen/dp18"
+        android:maxLines="1"
+        android:text="测试测试测试测试测试测试测试测试"
+        android:textColor="@color/gray_333"
+        android:textSize="15dp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dp18"
+        android:layout_marginTop="@dimen/dp10"
+        android:layout_marginRight="@dimen/dp18"
+        android:maxLines="2"
+        android:text="测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试"
+        android:textColor="@color/gray_666"
+        android:textSize="@dimen/dp12" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dp18"
+        android:layout_marginTop="@dimen/dp9"
+        android:layout_marginRight="@dimen/dp18"
+        android:text="¥ 9.90/30分钟"
+        android:textColor="@color/price_red"
+        android:textSize="@dimen/dp12" />
+
+
+</LinearLayout>

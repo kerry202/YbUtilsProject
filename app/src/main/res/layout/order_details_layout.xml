@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp44">
+
+        <RelativeLayout
+            android:id="@+id/order_details_back"
+            android:layout_width="@dimen/dp44"
+            android:layout_height="@dimen/dp44"
+            android:layout_marginLeft="@dimen/dp10">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:src="@mipmap/arrows_icon" />
+        </RelativeLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="@dimen/dp15"
+            android:text="售卖详情"
+            android:textColor="@color/gray_333"
+            android:textSize="@dimen/dp16"
+            android:textStyle="bold" />
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp1"
+        android:background="@color/gray_5" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dp16"
+        android:layout_marginTop="@dimen/dp10"
+        android:layout_marginRight="@dimen/dp16"
+        android:background="@drawable/circle_white"
+        android:orientation="horizontal"
+        android:paddingTop="@dimen/dp10"
+        android:paddingBottom="@dimen/dp10">
+
+        <ImageView
+            android:id="@+id/order_details_im"
+            android:layout_width="@dimen/dp80"
+            android:layout_height="@dimen/dp80"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="@dimen/dp8"
+            android:src="@mipmap/orange_logo" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="@dimen/dp10"
+            android:layout_marginRight="@dimen/dp18"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/order_details_tv1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="测试测试测试测试测试测试测试测试"
+                android:textColor="@color/gray_333"
+                android:textSize="15dp" />
+
+            <TextView
+                android:id="@+id/order_details_tv2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp10"
+                android:text="测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试"
+                android:textColor="@color/gray_666"
+                android:textSize="@dimen/dp12" />
+
+            <TextView
+                android:id="@+id/order_details_tv3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp9"
+                android:text="12211阅读 • 200评论"
+                android:textColor="@color/gray_666"
+                android:textSize="@dimen/dp10" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/order_details_recycer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/gray_5" />
+
+</LinearLayout>

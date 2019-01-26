@@ -1,0 +1,420 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <include layout="@layout/title_layout" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp10"
+        android:background="@color/gray_5" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp70"
+                android:layout_marginLeft="@dimen/dp16"
+                android:layout_marginTop="@dimen/dp20"
+                android:layout_marginRight="@dimen/dp16">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="考研目标门类"
+                        android:textColor="@color/gray_999"
+                        android:textSize="@dimen/dp12" />
+
+                    <EditText
+                        android:id="@+id/input_class_et"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/dp5"
+                        android:background="@null"
+                        android:hint="请填写报考门类"
+                        android:maxLines="1"
+                        android:textColor="@color/gray_444"
+                        android:textSize="@dimen/dp15" />
+
+
+                </LinearLayout>
+
+                <ImageView
+                    android:visibility="invisible"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:src="@mipmap/right_arrows_icon" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp1"
+                    android:layout_alignParentBottom="true"
+                    android:background="@color/gray_5" />
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp70"
+                android:layout_marginLeft="@dimen/dp16"
+                android:layout_marginTop="@dimen/dp20"
+                android:layout_marginRight="@dimen/dp16">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="考研目标专业"
+                        android:textColor="@color/gray_999"
+                        android:textSize="@dimen/dp12" />
+
+                    <EditText
+                        android:id="@+id/input_major_et"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/dp5"
+                        android:background="@null"
+                        android:hint="请填写报考专业"
+                        android:maxLines="1"
+                        android:textColor="@color/gray_444"
+                        android:textSize="@dimen/dp15" />
+
+
+                </LinearLayout>
+
+                <ImageView
+                    android:visibility="invisible"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:src="@mipmap/right_arrows_icon" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp1"
+                    android:layout_alignParentBottom="true"
+                    android:background="@color/gray_5" />
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp70"
+                android:layout_marginLeft="@dimen/dp16"
+                android:layout_marginTop="@dimen/dp20"
+                android:layout_marginRight="@dimen/dp16">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="考研目标省份"
+                        android:textColor="@color/gray_999"
+                        android:textSize="@dimen/dp12" />
+
+                    <EditText
+                        android:id="@+id/input_province_et"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/dp5"
+                        android:background="@null"
+                        android:hint="请填写报考省份"
+                        android:maxLines="1"
+                        android:textColor="@color/gray_444"
+                        android:textSize="@dimen/dp15" />
+
+
+                </LinearLayout>
+
+                <ImageView
+                    android:visibility="invisible"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:src="@mipmap/right_arrows_icon" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp1"
+                    android:layout_alignParentBottom="true"
+                    android:background="@color/gray_5" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp70"
+                android:layout_marginLeft="@dimen/dp16"
+                android:layout_marginTop="@dimen/dp20"
+                android:layout_marginRight="@dimen/dp16">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="考研目标学校"
+                        android:textColor="@color/gray_999"
+                        android:textSize="@dimen/dp12" />
+
+                    <EditText
+                        android:id="@+id/input_school_et"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/dp5"
+                        android:background="@null"
+                        android:hint="请填写报考学校"
+                        android:maxLines="1"
+                        android:textColor="@color/gray_444"
+                        android:textSize="@dimen/dp15" />
+
+
+                </LinearLayout>
+
+                <ImageView
+                    android:visibility="invisible"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:src="@mipmap/right_arrows_icon" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp1"
+                    android:layout_alignParentBottom="true"
+                    android:background="@color/gray_5" />
+            </RelativeLayout>
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp16"
+                android:layout_marginTop="@dimen/dp20"
+                android:text="请选择考研/保研"
+                android:textColor="@color/gray_999"
+                android:textSize="@dimen/dp12" />
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp36"
+                android:layout_marginLeft="@dimen/dp16"
+                android:layout_marginTop="@dimen/dp15"
+                android:layout_marginRight="@dimen/dp16"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/select_yes"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@mipmap/red_circle_icon"
+                    android:drawablePadding="@dimen/dp10"
+                    android:gravity="center_vertical"
+                    android:text="考研"
+                    android:textColor="@color/gray_333"
+                    android:textSize="@dimen/dp12" />
+
+                <TextView
+
+                    android:id="@+id/select_no"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dp45"
+                    android:layout_toRightOf="@id/select_yes"
+                    android:drawableLeft="@mipmap/white_circle_icon"
+                    android:drawablePadding="@dimen/dp10"
+                    android:gravity="center_vertical"
+                    android:text="保研"
+                    android:textColor="@color/gray_333"
+                    android:textSize="@dimen/dp12" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp1"
+                    android:layout_alignParentBottom="true"
+                    android:background="@color/gray_5" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp70"
+                android:layout_marginLeft="@dimen/dp16"
+                android:layout_marginTop="@dimen/dp20"
+                android:layout_marginRight="@dimen/dp16">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="入学时间"
+                        android:textColor="@color/gray_999"
+                        android:textSize="@dimen/dp12" />
+
+                    <EditText
+                        android:id="@+id/input_rx_time_et"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/dp5"
+                        android:background="@null"
+                        android:hint="请填写你的入学时间"
+                        android:maxLines="1"
+                        android:textColor="@color/gray_444"
+                        android:textSize="@dimen/dp15" />
+
+
+                </LinearLayout>
+
+                <ImageView
+                    android:visibility="invisible"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:src="@mipmap/right_arrows_icon" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp1"
+                    android:layout_alignParentBottom="true"
+                    android:background="@color/gray_5" />
+            </RelativeLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp16"
+                android:layout_marginTop="@dimen/dp20"
+                android:text="上传凭证"
+                android:textColor="@color/gray_999"
+                android:textSize="@dimen/dp12" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp16"
+                android:layout_marginTop="@dimen/dp5"
+                android:text="请按照对应的提示文本上传照片"
+                android:textColor="@color/gray_999"
+                android:textSize="@dimen/dp15" />
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp20"
+                android:layout_marginBottom="@dimen/dp55"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <RelativeLayout
+                        android:id="@+id/upload_zheng_rl"
+                        android:layout_width="match_parent"
+                        android:layout_height="180dp"
+                        android:layout_marginLeft="@dimen/dp16"
+                        android:layout_marginRight="@dimen/dp16"
+                        android:layout_weight="1"
+                        android:background="@drawable/circle_gray_f5">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:src="@mipmap/upload_photo_icon2" />
+
+                    </RelativeLayout>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/dp15"
+                        android:gravity="center"
+                        android:text="上传学生证正面"
+                        android:textColor="@color/gray_999"
+                        android:textSize="@dimen/dp15" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <RelativeLayout
+                        android:id="@+id/upload_fan_rl"
+                        android:layout_width="match_parent"
+                        android:layout_height="180dp"
+                        android:layout_marginRight="@dimen/dp16"
+                        android:background="@drawable/circle_gray_f5">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:src="@mipmap/upload_photo_icon2" />
+
+                    </RelativeLayout>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/dp15"
+                        android:gravity="center"
+                        android:text="上传学生证反面"
+                        android:textColor="@color/gray_999"
+                        android:textSize="@dimen/dp15" />
+
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

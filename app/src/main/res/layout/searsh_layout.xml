@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp44"
+        android:layout_marginLeft="@dimen/dp18"
+        android:layout_marginRight="@dimen/dp17">
+
+        <TextView
+            android:id="@+id/canclr_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:text="@string/canclr_str"
+            android:textColor="@color/price_red"
+            android:textSize="@dimen/dp16" />
+
+        <RelativeLayout
+            android:id="@+id/home_searsh"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp30"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/dp11"
+            android:layout_toLeftOf="@id/canclr_tv"
+            android:background="@drawable/circle_gray_ef">
+
+            <EditText
+                android:id="@+id/input_searsh_str"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp30"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/dp17"
+                android:background="@null"
+                android:drawableLeft="@mipmap/searsh_icon"
+                android:drawablePadding="@dimen/dp10"
+                android:gravity="center_vertical"
+                android:hint="@string/search_str"
+                android:imeOptions="actionSearch"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:textColor="@color/gray_333"
+                android:textSize="@dimen/dp15" />
+
+            <RelativeLayout
+                android:id="@+id/searsh_rl"
+                android:layout_width="@dimen/dp30"
+                android:layout_height="@dimen/dp30"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="@dimen/dp5">
+
+                <ImageView
+                    android:id="@+id/clean_iv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:src="@mipmap/clean_icon" />
+
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp5"
+        android:background="@color/gray_5" />
+
+    <LinearLayout
+        android:id="@+id/searsh_ll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp17"
+            android:layout_marginTop="@dimen/dp15"
+            android:layout_marginRight="@dimen/dp17">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="搜索历史"
+                android:textColor="@color/gray_333"
+                android:textSize="@dimen/dp15" />
+
+            <ImageView
+                android:id="@+id/delete_searsh"
+                android:layout_width="@dimen/dp14"
+                android:layout_height="@dimen/dp17"
+                android:layout_alignParentRight="true"
+                android:src="@mipmap/delete_icon" />
+        </RelativeLayout>
+
+        <include layout="@layout/flow_layout" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp5"
+            android:layout_marginTop="@dimen/dp15"
+            android:background="@color/gray_5" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp17"
+            android:layout_marginTop="@dimen/dp15"
+            android:layout_marginRight="@dimen/dp17">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="搜索标签"
+                android:textColor="@color/gray_333"
+                android:textSize="@dimen/dp15" />
+
+
+        </RelativeLayout>
+
+        <com.youyicheng.KaoLiao.views.FlowTagView
+            android:id="@+id/flow_layout2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp3"
+            android:layout_marginRight="@dimen/dp16"
+            android:padding="8dp"
+            app:lineSpacing="10dp"
+            app:tagSpacing="10dp" />
+    </LinearLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/searsh_recycler"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone" />
+
+</LinearLayout>

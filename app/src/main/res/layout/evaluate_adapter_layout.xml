@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dp16"
+        android:layout_marginTop="@dimen/dp22"
+        android:layout_marginRight="@dimen/dp16">
+
+        <ImageView
+            android:id="@+id/evaluate_user_icon"
+            android:layout_width="@dimen/dp42"
+            android:layout_height="@dimen/dp42"
+            android:layout_centerVertical="true"
+            android:src="@mipmap/orange_logo" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/dp10"
+            android:layout_toRightOf="@id/evaluate_user_icon"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/evaluate_user_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="你丫个设计师"
+                android:textColor="@color/gray_333"
+                android:textSize="@dimen/dp15"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/evaluate_user_times"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp7"
+                android:text="01-22"
+                android:textColor="@color/gray_999"
+                android:textSize="@dimen/dp10" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:id="@+id/evaluate_user_star"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="26"
+            android:textColor="@color/gray_333"
+            android:textSize="@dimen/dp13"
+             />
+
+    </RelativeLayout>
+    <TextView
+        android:textSize="@dimen/dp15"
+        android:textColor="@color/gray_333"
+        android:layout_marginTop="@dimen/dp9"
+        android:layout_marginLeft="@dimen/dp68"
+        android:layout_marginRight="@dimen/dp16"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="涨知识了啊"
+        />
+
+
+    <RelativeLayout
+        android:layout_marginTop="@dimen/dp9"
+        android:layout_marginLeft="@dimen/dp68"
+        android:layout_marginRight="@dimen/dp16"
+        android:background="@drawable/circle_gray_f5"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp63">
+
+        <TextView
+            android:layout_marginRight="@dimen/dp12"
+            android:layout_marginLeft="@dimen/dp11"
+            android:layout_marginTop="@dimen/dp12"
+            android:textSize="@dimen/dp15"
+            android:textColor="@color/gray_333"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="作者回复:"
+            />
+
+        <TextView
+            android:layout_marginBottom="@dimen/dp12"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/dp12"
+            android:textSize="@dimen/dp15"
+            android:textColor="@color/bule_4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="查看3条回复 >"
+            />
+    </RelativeLayout>
+
+
+</LinearLayout>

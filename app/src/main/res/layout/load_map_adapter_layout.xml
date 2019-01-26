@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="81dp"
+    android:layout_marginTop="@dimen/dp10"
+    android:layout_marginRight="@dimen/dp10"
+    android:background="@color/white">
+
+    <RelativeLayout
+        android:id="@+id/load_map"
+        android:layout_width="77dp"
+        android:layout_height="77dp"
+        android:layout_centerInParent="true"
+        android:background="@color/gray_f3">
+
+        <ImageView
+            android:layout_width="51dp"
+            android:layout_height="51dp"
+            android:layout_centerInParent="true"
+            android:scaleType="fitXY"
+            android:src="@mipmap/add_photo_icon" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/photo_rl"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white">
+
+        <ImageView
+            android:id="@+id/photo_iv"
+            android:layout_width="77dp"
+            android:layout_height="77dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:scaleType="fitXY"
+            android:src="@mipmap/test_icon" />
+
+        <ImageView
+            android:id="@+id/map_close_iv"
+            android:layout_width="@dimen/dp22"
+            android:layout_height="@dimen/dp22"
+            android:src="@mipmap/photo_close" />
+    </RelativeLayout>
+
+
+</RelativeLayout>

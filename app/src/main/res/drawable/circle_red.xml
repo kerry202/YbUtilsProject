@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- view背景色 -->
+    <solid android:color="@color/price_red" />    <!-- 边框颜色 宽度 -->
+    <stroke
+        android:width="1dp"
+        android:color="@color/price_red" />    <!-- 边框圆角 -->
+    <corners android:radius="5dp" />
+
+</shape>
+
+
+
+

@@ -1,0 +1,301 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <com.yb.refrsh.SmartRefreshLayout
+        android:id="@+id/refreshLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/text"
+        app:srlAccentColor="#666"
+        app:srlEnableLoadMoreWhenContentNotFull="false"
+        app:srlEnablePreviewInEditMode="false"
+        app:srlPrimaryColor="#fff">
+
+        <com.yb.refrsh.header.ClassicsHeader
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:id="@+id/details_head_rl"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp44"
+                android:layout_marginLeft="@dimen/dp17"
+                android:layout_marginRight="@dimen/dp17"
+                android:background="@color/white">
+
+                <ImageView
+                    android:id="@+id/me_set"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:src="@mipmap/seting_icon" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/dp15"
+                    android:text="我的"
+                    android:textColor="@color/gray_333"
+                    android:textSize="@dimen/dp16"
+                    android:textStyle="bold" />
+
+                <ImageView
+                    android:id="@+id/me_msg"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:src="@mipmap/home_msg_icon" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp17"
+                android:layout_marginTop="@dimen/dp25"
+                android:layout_marginRight="@dimen/dp17">
+
+
+                <ImageView
+                    android:id="@+id/user_photo"
+                    android:layout_width="@dimen/dp71"
+                    android:layout_height="@dimen/dp71"
+                    android:layout_centerVertical="true"
+                    android:scaleType="fitXY"
+                    android:src="@mipmap/test_icon" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/dp10"
+                    android:layout_toRightOf="@id/user_photo"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/user_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="小明学长"
+                        android:textColor="@color/gray_333"
+                        android:textSize="@dimen/dp22"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/user_flag"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/dp10"
+                        android:text="立即编辑我的个性签名"
+                        android:textColor="@color/gray_999"
+                        android:textSize="@dimen/dp12" />
+
+                </LinearLayout>
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/dp14"
+                    android:src="@mipmap/right_arrows_icon" />
+
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp1"
+                android:layout_marginTop="@dimen/dp15"
+                android:background="@color/gray_5" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp40"
+                android:layout_marginTop="@dimen/dp14"
+                android:layout_marginRight="@dimen/dp40"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:id="@+id/me_colltion_ll"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/me_colltion_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="我的收藏"
+                        android:textColor="@color/gray_333"
+                        android:textSize="@dimen/dp13"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/colltion_count"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="@dimen/dp9"
+                        android:text="31"
+                        android:textColor="@color/gray_333"
+                        android:textSize="@dimen/dp11"
+                        android:textStyle="bold" />
+
+                    <View
+                        android:id="@+id/colltion_line"
+                        android:layout_width="@dimen/dp37"
+                        android:layout_height="@dimen/dp3"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="@dimen/dp8"
+                        android:background="@color/price_red" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/me_follow_ll"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/me_follow_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="我的关注"
+                        android:textColor="@color/gray_999"
+                        android:textSize="@dimen/dp13" />
+
+                    <TextView
+                        android:id="@+id/follow_count"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="@dimen/dp9"
+                        android:text="1"
+                        android:textColor="@color/gray_999"
+                        android:textSize="@dimen/dp11" />
+
+                    <View
+                        android:id="@+id/follow_line"
+                        android:layout_width="@dimen/dp37"
+                        android:layout_height="@dimen/dp3"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="@dimen/dp8"
+                        android:background="@color/price_red"
+                        android:visibility="invisible" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/me_order_ll"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/me_order_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="我的订单"
+                        android:textColor="@color/gray_999"
+                        android:textSize="@dimen/dp13" />
+
+                    <TextView
+                        android:id="@+id/order_count"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="@dimen/dp9"
+                        android:text="12"
+                        android:textColor="@color/gray_999"
+                        android:textSize="@dimen/dp11" />
+
+                    <View
+                        android:id="@+id/order_line"
+                        android:layout_width="@dimen/dp37"
+                        android:layout_height="@dimen/dp3"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="@dimen/dp8"
+                        android:background="@color/price_red"
+                        android:visibility="invisible" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/me_send_ll"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/me_send_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="我的发布"
+                        android:textColor="@color/gray_999"
+                        android:textSize="@dimen/dp13" />
+
+                    <TextView
+                        android:id="@+id/send_count"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="@dimen/dp9"
+                        android:text="11"
+                        android:textColor="@color/gray_999"
+                        android:textSize="@dimen/dp11" />
+
+                    <View
+                        android:id="@+id/send_line"
+                        android:layout_width="@dimen/dp37"
+                        android:layout_height="@dimen/dp3"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="@dimen/dp8"
+                        android:background="@color/price_red"
+                        android:visibility="invisible" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp10"
+                android:background="@color/gray_5" />
+
+            <FrameLayout
+                android:id="@+id/me_fl"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </LinearLayout>
+
+        <com.yb.refrsh.footer.ClassicsFooter
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:srlClassicsSpinnerStyle="FixedBehind" />
+
+    </com.yb.refrsh.SmartRefreshLayout>
+
+</LinearLayout>

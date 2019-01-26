@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <RelativeLayout
+        android:id="@+id/details_head_rl"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp44">
+
+        <RelativeLayout
+            android:id="@+id/details_back"
+            android:layout_width="@dimen/dp44"
+            android:layout_height="@dimen/dp44"
+            android:layout_marginLeft="@dimen/dp10">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:src="@mipmap/arrows_icon" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginLeft="@dimen/dp90"
+            android:layout_marginRight="@dimen/dp100"
+            android:layout_toLeftOf="@id/home_msg"
+            android:layout_toRightOf="@id/home_sort"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:id="@+id/home_jyt_ll"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.2"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/details_bk_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="备考资料"
+                    android:textColor="@color/gray_333"
+                    android:textSize="@dimen/dp16"
+                    android:textStyle="bold" />
+
+                <View
+                    android:id="@+id/details_bk_line"
+                    android:layout_width="@dimen/dp18"
+                    android:layout_height="@dimen/dp3"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/dp5"
+                    android:background="@color/price_red" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/home_1v1_ll"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/details_pl_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="评论"
+                    android:textColor="@color/gray_333"
+                    android:textSize="@dimen/dp16" />
+
+                <View
+                    android:id="@+id/details_pl_line"
+                    android:layout_width="@dimen/dp18"
+                    android:layout_height="@dimen/dp3"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/dp5"
+                    android:background="@color/price_red"
+                    android:visibility="invisible" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/details_buttom_rl"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp64"
+        android:layout_alignParentBottom="true"
+        android:background="@color/white">
+
+        <TextView
+            android:id="@+id/details_shared_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/dp25"
+            android:drawableTop="@mipmap/shaerd_icon"
+            android:drawablePadding="@dimen/dp5"
+            android:text="@string/shared_str"
+            android:textColor="@color/gray_333" />
+
+        <TextView
+            android:id="@+id/details_colletion_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/dp25"
+            android:layout_toRightOf="@id/details_shared_tv"
+            android:drawableTop="@mipmap/colletion_icon"
+            android:drawablePadding="@dimen/dp5"
+            android:text="@string/colletion_str"
+            android:textColor="@color/gray_333" />
+
+        <TextView
+            android:id="@+id/details_msg_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/dp25"
+            android:layout_toRightOf="@id/details_colletion_tv"
+            android:drawableTop="@mipmap/private_msg_icon"
+            android:drawablePadding="@dimen/dp5"
+            android:text="@string/private_msg_str"
+            android:textColor="@color/gray_333" />
+
+        <Button
+            android:id="@+id/go_buy"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp40"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/dp25"
+            android:layout_marginRight="@dimen/dp16"
+            android:layout_toRightOf="@+id/details_msg_tv"
+            android:background="@drawable/circle_red"
+            android:gravity="center"
+            android:text="@string/go_buy_str"
+            android:textColor="@color/white" />
+    </RelativeLayout>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/details_viewpager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/details_buttom_rl"
+        android:layout_below="@id/details_head_rl" />
+
+</RelativeLayout>

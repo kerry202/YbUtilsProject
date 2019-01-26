@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <include layout="@layout/title_layout" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp44">
+
+        <TextView
+            android:id="@+id/contact_server_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/dp16"
+            android:gravity="center"
+            android:text="联系客服"
+            android:textColor="@color/price_red"
+            android:textSize="@dimen/dp15" />
+
+        <RelativeLayout
+            android:id="@+id/address_searsh"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp30"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/dp16"
+            android:layout_marginRight="@dimen/dp16"
+            android:layout_toLeftOf="@id/contact_server_tv"
+            android:background="@drawable/circle_gray_ef">
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/dp15"
+                android:background="@null"
+                android:drawableLeft="@mipmap/searsh_icon"
+                android:drawablePadding="@dimen/dp10"
+                android:gravity="center"
+                android:text="请输入省份"
+                android:textColor="@color/gray_989"
+                android:textSize="@dimen/dp15" />
+
+        </RelativeLayout>
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp10"
+        android:background="@color/gray_5" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/address_recycler"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+
+</LinearLayout>

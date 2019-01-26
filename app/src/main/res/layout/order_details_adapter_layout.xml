@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/dp10"
+    android:background="@color/white"
+    android:orientation="vertical"
+    android:paddingTop="@dimen/dp15"
+    android:paddingBottom="@dimen/dp15">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dp17"
+        android:layout_marginRight="@dimen/dp17">
+
+        <TextView
+            android:id="@+id/user_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="姓名: 张三"
+            android:textColor="@color/gray_666"
+            android:textSize="@dimen/dp12" />
+
+        <TextView
+            android:id="@+id/phone_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:text="电话: 13212121222"
+            android:textColor="@color/gray_666"
+            android:textSize="@dimen/dp12" />
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/user_address"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dp17"
+        android:layout_marginTop="@dimen/dp15"
+        android:layout_marginRight="@dimen/dp17"
+        android:maxLines="3"
+        android:text="地址: 北京市。。。。。.......................................................................。。。。。。。。。。"
+        android:textColor="@color/gray_666"
+        android:textSize="@dimen/dp12" />
+
+
+    <TextView
+        android:id="@+id/user_count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dp17"
+        android:layout_marginTop="@dimen/dp15"
+        android:layout_marginRight="@dimen/dp17"
+        android:maxLines="3"
+        android:text="地址: 2"
+        android:textColor="@color/gray_666"
+        android:textSize="@dimen/dp12" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dp17"
+        android:layout_marginTop="@dimen/dp15"
+        android:layout_marginRight="@dimen/dp17">
+
+        <TextView
+            android:id="@+id/order_details_tv"
+            android:layout_width="@dimen/dp75"
+            android:layout_height="@dimen/dp29"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/circle_red_white15"
+            android:gravity="center"
+            android:paddingLeft="@dimen/dp11"
+            android:paddingRight="@dimen/dp11"
+            android:text="查看物流"
+            android:textColor="@color/price_red"
+            android:textSize="@dimen/dp12" />
+
+        <TextView
+            android:id="@+id/private_msg"
+            android:layout_width="@dimen/dp75"
+            android:layout_height="@dimen/dp29"
+            android:layout_marginRight="@dimen/dp15"
+            android:layout_toLeftOf="@id/order_details_tv"
+            android:background="@drawable/circle_white_gray"
+            android:gravity="center"
+            android:paddingLeft="@dimen/dp11"
+            android:paddingRight="@dimen/dp11"
+            android:text="私信TA"
+            android:textColor="@color/gray_666"
+            android:textSize="@dimen/dp12" />
+
+    </RelativeLayout>
+
+</LinearLayout>
