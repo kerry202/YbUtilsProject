@@ -2,7 +2,6 @@ package com.youyicheng.KaoLiao.fragemnt;
 
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-
 import com.youyicheng.KaoLiao.adapters.FollowAdapter;
 import com.youyicheng.KaoLiao.R;
 import com.youyicheng.KaoLiao.base.BaseFragment;
@@ -45,4 +44,7 @@ public class MeFollowFragment extends BaseFragment {
 
 
     }
+
+
+
 }

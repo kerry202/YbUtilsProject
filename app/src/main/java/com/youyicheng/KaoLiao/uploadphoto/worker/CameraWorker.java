@@ -17,9 +17,7 @@ import static com.youyicheng.KaoLiao.uploadphoto.factory.PhotoFactory.CODE_SUCCE
 import static com.youyicheng.KaoLiao.uploadphoto.factory.PhotoFactory.TYPE_PHOTO_AUTO_COMPRESS;
 import static com.youyicheng.KaoLiao.uploadphoto.factory.PhotoFactory.TYPE_PHOTO_UNTREATED;
 
-/**
- * Created by anlia on 2018/5/16.
- */
+
 
 public class CameraWorker extends BaseWorker {
     private int mRequestCode;

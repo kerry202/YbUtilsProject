@@ -1,16 +1,19 @@
 package com.youyicheng.KaoLiao.fragemnt;
 
 import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import com.recycler.baseholder.BaseQuickAdapter;
+import com.yb.refrsh.api.RefreshLayout;
 import com.youyicheng.KaoLiao.R;
 import com.youyicheng.KaoLiao.adapters.DetailsAdapter;
 import com.youyicheng.KaoLiao.adapters.OrderAdapter;
 import com.youyicheng.KaoLiao.base.BaseFragment;
 import com.youyicheng.KaoLiao.ui.OrderDetailsActivity;
+import com.youyicheng.KaoLiao.util.Logs;
 
 import java.util.ArrayList;
 
@@ -55,4 +58,5 @@ public class MeOrderFragment extends BaseFragment {
 
 
     }
+
 }

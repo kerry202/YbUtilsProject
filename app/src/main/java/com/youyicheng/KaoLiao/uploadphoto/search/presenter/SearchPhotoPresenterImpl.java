@@ -8,9 +8,7 @@ import com.youyicheng.KaoLiao.uploadphoto.search.InterfaceManager;
 import java.util.List;
 import java.util.Map;
 
-/**
- * Created by anlia on 2017/7/23.
- */
+
 
 public class SearchPhotoPresenterImpl implements InterfaceManager.Presenter{
     InterfaceManager.Model model;

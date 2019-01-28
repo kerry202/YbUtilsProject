@@ -1,0 +1,13 @@
+# Created by .ignore support plugin (hsz.mobi)
+.idea/workspace.xml
+app/libs/
+app/src/androidTest/
+app/src/main/res/drawable-v24/
+app/src/main/res/mipmap-anydpi-v26/
+app/src/test/
+baseholder/src/androidTest/
+baseholder/src/test/
+refrsh/libs/
+refrsh/src/androidTest/
+refrsh/src/main/res/drawable/
+refrsh/src/test/

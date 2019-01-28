@@ -15,9 +15,7 @@ import com.youyicheng.KaoLiao.uploadphoto.utils.UriUtils;
 
 import java.io.File;
 
-/**
- * Created by anlia on 2018/5/16.
- */
+
 
 public class CropWorker extends BaseWorker {
     private Uri cropData;

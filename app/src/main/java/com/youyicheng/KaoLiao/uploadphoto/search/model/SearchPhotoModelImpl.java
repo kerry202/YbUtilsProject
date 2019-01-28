@@ -17,9 +17,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-/**
- * Created by anlia on 2018/1/8.
- */
+
 
 public class SearchPhotoModelImpl implements InterfaceManager.Model {
     /**

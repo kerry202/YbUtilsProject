@@ -1,8 +1,6 @@
 package com.youyicheng.KaoLiao.util;
 
 
-import java.util.List;
-
 
 /**
  * 通知工具

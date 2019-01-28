@@ -5,9 +5,7 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.os.Environment;
 
-/**
- * Created by anlia on 2017/12/18.
- */
+
 
 public class SystemUtils {
     /**

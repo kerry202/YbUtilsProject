@@ -14,7 +14,6 @@ import android.provider.MediaStore;
 import java.io.File;
 
 /**
- * CSDN_LQR
  * 图片选择工具类
  */
 public class LQRPhotoSelectUtils {

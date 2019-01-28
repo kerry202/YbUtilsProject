@@ -24,6 +24,7 @@
             android:background="@color/price_red" />
 
         <TextView
+            android:id="@+id/comment_count"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
@@ -40,9 +41,30 @@
         android:layout_marginTop="@dimen/dp15"
         android:background="@color/gray_5" />
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/evaluate_recycler"
+
+    <com.yb.refrsh.SmartRefreshLayout
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/refreshLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="match_parent"
+        android:layout_below="@+id/text"
+        app:srlAccentColor="#666"
+        app:srlEnableLoadMoreWhenContentNotFull="false"
+        app:srlEnablePreviewInEditMode="false"
+        app:srlPrimaryColor="#fff">
+
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/evaluate_recycler"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <com.yb.refrsh.footer.ClassicsFooter
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:srlClassicsSpinnerStyle="Translate" />
+
+
+    </com.yb.refrsh.SmartRefreshLayout>
 
 </LinearLayout>

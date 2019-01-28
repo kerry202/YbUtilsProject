@@ -14,9 +14,6 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 
-/**
- * Created by anlia on 2017/12/18.
- */
 
 public class CompressUtils {
     private static int calculateNewBitmapSize(

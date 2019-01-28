@@ -146,6 +146,7 @@
 
 
             <TextView
+                android:id="@+id/title1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/dp29"
@@ -265,6 +266,7 @@
 
 
                     <TextView
+                        android:id="@+id/major_tv"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/dp9"
@@ -282,6 +284,7 @@
                 android:background="@color/gray_5" />
 
             <TextView
+                android:id="@+id/des1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/dp28"
@@ -294,6 +297,7 @@
                 android:textSize="@dimen/dp15" />
 
             <ImageView
+                android:id="@+id/im1"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dp137"
                 android:layout_gravity="center_horizontal"
@@ -314,6 +318,7 @@
                 android:textSize="@dimen/dp15" />
 
             <TextView
+                android:id="@+id/tv2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/dp28"
@@ -326,6 +331,7 @@
                 android:textSize="@dimen/dp15" />
 
             <TextView
+                android:id="@+id/tv3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/dp28"
@@ -356,6 +362,7 @@
                     android:background="@color/price_red" />
 
                 <TextView
+                    android:id="@+id/comment_count"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
@@ -386,6 +393,7 @@
                 android:background="@color/gray_5" />
 
             <TextView
+                android:id="@+id/click_all_comment_count"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"

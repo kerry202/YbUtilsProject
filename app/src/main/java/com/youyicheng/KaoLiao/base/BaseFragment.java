@@ -8,6 +8,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.yb.refrsh.api.RefreshLayout;
+import com.yb.refrsh.listener.OnLoadMoreListener;
+import com.yb.refrsh.listener.OnRefreshListener;
 import com.youyicheng.KaoLiao.util.MyEvents;
 
 import org.greenrobot.eventbus.EventBus;

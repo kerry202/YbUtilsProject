@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/no_data_rl"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical"
+    android:visibility="gone"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/err_im"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:src="@mipmap/net_err_icon" />
+
+        <TextView
+            android:id="@+id/err_des"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/dp18"
+            android:text="没有搜索到内容 换个关键词吧"
+            android:textColor="@color/gray_999"
+            android:textSize="@dimen/dp15" />
+
+        <TextView
+            android:id="@+id/err_bt"
+            android:layout_width="143dp"
+            android:layout_height="35dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/dp29"
+            android:background="@drawable/circle_red15"
+            android:gravity="center"
+            android:text="联系料料君"
+            android:textColor="@color/white"
+            android:textSize="@dimen/dp15"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+
+</RelativeLayout>

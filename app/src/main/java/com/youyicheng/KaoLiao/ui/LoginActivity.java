@@ -19,8 +19,10 @@ import com.youyicheng.KaoLiao.config.MyInterface;
 import com.youyicheng.KaoLiao.http.HttpUtils;
 import com.youyicheng.KaoLiao.http.OnDataListener;
 import com.youyicheng.KaoLiao.http.RequestState;
+import com.youyicheng.KaoLiao.module.LoginBean;
 import com.youyicheng.KaoLiao.module.RegisterModule;
 import com.youyicheng.KaoLiao.util.Logs;
+import com.youyicheng.KaoLiao.util.SPUtils;
 import com.youyicheng.KaoLiao.util.ToastUtil;
 
 import org.greenrobot.eventbus.Subscribe;
@@ -52,18 +54,23 @@ public class LoginActivity extends BaseActivity {
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
-            conut--;
-            if (conut >= 0) {
-                getCode.setText("重新发送(" + conut + "s)");
-                handler.sendEmptyMessageDelayed(1, 1000);
-                getCode.setClickable(false);
-            } else {
-                conut = 60;
-                getCode.setClickable(true);
-                getCode.setText("获取验证码");
+            try {
+                conut--;
+                if (conut >= 0) {
+                    getCode.setText("重新发送(" + conut + "s)");
+                    handler.sendEmptyMessageDelayed(1, 1000);
+                    getCode.setClickable(false);
+                } else {
+                    conut = 60;
+                    getCode.setClickable(true);
+                    getCode.setText("获取验证码");
+                }
+            } catch (Exception e) {
             }
         }
     };
+    private String phone;
+    private String code1;
 
     @Override
     protected int getLayoutId() {
@@ -113,10 +120,10 @@ public class LoginActivity extends BaseActivity {
 
                 if (s.length() == 6) {
                     code.setClickable(true);
-                    code.setTextColor(activity.getResources().getColor(R.color.price_red));
+                    loginBt.setBackground(activity.getResources().getDrawable(R.drawable.circle_red15));
                 } else {
                     code.setClickable(false);
-                    code.setTextColor(activity.getResources().getColor(R.color.gray_c));
+                    loginBt.setBackground(activity.getResources().getDrawable(R.drawable.circle_gray_e));
                 }
             }
 
@@ -143,10 +150,12 @@ public class LoginActivity extends BaseActivity {
     @OnClick({R.id.next_tv, R.id.get_code, R.id.login_bt})
     public void onViewClicked(View view) {
 
-        String phone = phoneNumber.getText().toString();
-        String code1 = code.getText().toString();
+        phone = phoneNumber.getText().toString();
+        code1 = code.getText().toString();
+
         switch (view.getId()) {
             case R.id.next_tv:
+                finish();
                 break;
             case R.id.get_code:
 
@@ -160,7 +169,28 @@ public class LoginActivity extends BaseActivity {
     }
 
     private void login() {
+        HashMap<String, String> params = new HashMap<>();
+        params.put("phone", phone);
+        params.put("code", code1);
+        HttpUtils.getInstance().sendRequest(activity, params, RequestState.STATE_DIALOG, MyInterface.Login, new OnDataListener() {
+            @Override
+            public void onSuccess(String data) {
+                Logs.s("     登陆 onNext  " + data);
+                LoginBean registerModule = new Gson().fromJson(data, LoginBean.class);
+                if (registerModule != null && registerModule.result.equals("SUCCESS")) {
+                    SPUtils.setParam(activity, "token", registerModule.data.token);
+                    SPUtils.setParam(activity, "reg", registerModule.data.reg);
+                } else {
+                    ToastUtil.show(activity, registerModule.message);
+                }
+            }
 
+            @Override
+            public void onError(String msg) {
+                Logs.s("     登陆 onError  " + msg);
+
+            }
+        });
 
     }
 
@@ -171,11 +201,11 @@ public class LoginActivity extends BaseActivity {
         HttpUtils.getInstance().sendRequest(activity, params, RequestState.STATE_DIALOG, MyInterface.SendCode, new OnDataListener() {
             @Override
             public void onSuccess(String data) {
-                Logs.s("     注册接口1 onNext  " + data);
+                Logs.s("     注册接口 onNext  " + data);
                 RegisterModule registerModule = new Gson().fromJson(data, RegisterModule.class);
                 if (registerModule != null) {
                     if (registerModule.result.equalsIgnoreCase("SUCCESS")) {
-                        handler.sendEmptyMessageDelayed(1, 1000);
+                        handler.sendEmptyMessageDelayed(1, 0);
                     } else {
                         ToastUtil.show(activity, registerModule.message);
                     }
@@ -184,7 +214,7 @@ public class LoginActivity extends BaseActivity {
 
             @Override
             public void onError(String msg) {
-                Logs.s("     注册接口1 onNext  " + msg);
+                Logs.s("     注册接口 onError  " + msg);
 
             }
         });

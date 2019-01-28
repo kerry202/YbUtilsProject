@@ -29,6 +29,7 @@
                 android:layout_marginRight="@dimen/dp16">
 
                 <LinearLayout
+                    android:id="@+id/get_men_class_rl"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
@@ -41,13 +42,13 @@
                         android:textColor="@color/gray_999"
                         android:textSize="@dimen/dp12" />
 
-                    <EditText
+                    <TextView
                         android:id="@+id/input_class_et"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/dp5"
                         android:background="@null"
-                        android:hint="请填写报考门类"
+                        android:hint="请选择报考门类"
                         android:maxLines="1"
                         android:textColor="@color/gray_444"
                         android:textSize="@dimen/dp15" />
@@ -56,12 +57,12 @@
                 </LinearLayout>
 
                 <ImageView
-                    android:visibility="invisible"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
-                    android:src="@mipmap/right_arrows_icon" />
+                    android:src="@mipmap/right_arrows_icon"
+                    android:visibility="invisible" />
 
                 <View
                     android:layout_width="match_parent"
@@ -72,6 +73,7 @@
 
 
             <RelativeLayout
+                android:id="@+id/get_zy_rl"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dp70"
                 android:layout_marginLeft="@dimen/dp16"
@@ -91,13 +93,13 @@
                         android:textColor="@color/gray_999"
                         android:textSize="@dimen/dp12" />
 
-                    <EditText
+                    <TextView
                         android:id="@+id/input_major_et"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/dp5"
                         android:background="@null"
-                        android:hint="请填写报考专业"
+                        android:hint="请选择报考专业"
                         android:maxLines="1"
                         android:textColor="@color/gray_444"
                         android:textSize="@dimen/dp15" />
@@ -106,12 +108,12 @@
                 </LinearLayout>
 
                 <ImageView
-                    android:visibility="invisible"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
-                    android:src="@mipmap/right_arrows_icon" />
+                    android:src="@mipmap/right_arrows_icon"
+                    android:visibility="invisible" />
 
                 <View
                     android:layout_width="match_parent"
@@ -122,6 +124,7 @@
 
 
             <RelativeLayout
+                android:id="@+id/get_city_rl"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dp70"
                 android:layout_marginLeft="@dimen/dp16"
@@ -141,13 +144,13 @@
                         android:textColor="@color/gray_999"
                         android:textSize="@dimen/dp12" />
 
-                    <EditText
+                    <TextView
                         android:id="@+id/input_province_et"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/dp5"
                         android:background="@null"
-                        android:hint="请填写报考省份"
+                        android:hint="请选择报考省份"
                         android:maxLines="1"
                         android:textColor="@color/gray_444"
                         android:textSize="@dimen/dp15" />
@@ -156,12 +159,12 @@
                 </LinearLayout>
 
                 <ImageView
-                    android:visibility="invisible"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
-                    android:src="@mipmap/right_arrows_icon" />
+                    android:src="@mipmap/right_arrows_icon"
+                    android:visibility="invisible" />
 
                 <View
                     android:layout_width="match_parent"
@@ -171,6 +174,7 @@
             </RelativeLayout>
 
             <RelativeLayout
+                android:id="@+id/get_school_rl"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dp70"
                 android:layout_marginLeft="@dimen/dp16"
@@ -190,13 +194,13 @@
                         android:textColor="@color/gray_999"
                         android:textSize="@dimen/dp12" />
 
-                    <EditText
+                    <TextView
                         android:id="@+id/input_school_et"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/dp5"
                         android:background="@null"
-                        android:hint="请填写报考学校"
+                        android:hint="请选择报考学校"
                         android:maxLines="1"
                         android:textColor="@color/gray_444"
                         android:textSize="@dimen/dp15" />
@@ -205,12 +209,12 @@
                 </LinearLayout>
 
                 <ImageView
-                    android:visibility="invisible"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
-                    android:src="@mipmap/right_arrows_icon" />
+                    android:src="@mipmap/right_arrows_icon"
+                    android:visibility="invisible" />
 
                 <View
                     android:layout_width="match_parent"
@@ -279,6 +283,7 @@
                 android:layout_marginRight="@dimen/dp16">
 
                 <LinearLayout
+                    android:id="@+id/in_time_ll"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
@@ -293,25 +298,26 @@
 
                     <EditText
                         android:id="@+id/input_rx_time_et"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/dp5"
                         android:background="@null"
-                        android:hint="请填写你的入学时间"
+                        android:hint="请输入4位年份"
+                        android:inputType="number"
+                        android:maxLength="4"
                         android:maxLines="1"
                         android:textColor="@color/gray_444"
                         android:textSize="@dimen/dp15" />
 
-
                 </LinearLayout>
 
                 <ImageView
-                    android:visibility="invisible"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
-                    android:src="@mipmap/right_arrows_icon" />
+                    android:src="@mipmap/right_arrows_icon"
+                    android:visibility="invisible" />
 
                 <View
                     android:layout_width="match_parent"
@@ -362,6 +368,7 @@
                         android:background="@drawable/circle_gray_f5">
 
                         <ImageView
+                            android:id="@+id/photo_im1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_centerInParent="true"
@@ -393,6 +400,7 @@
                         android:background="@drawable/circle_gray_f5">
 
                         <ImageView
+                            android:id="@+id/photo_im2"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_centerInParent="true"

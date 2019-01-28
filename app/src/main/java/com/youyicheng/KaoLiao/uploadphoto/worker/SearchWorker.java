@@ -8,9 +8,7 @@ import com.youyicheng.KaoLiao.uploadphoto.search.presenter.SearchPhotoPresenterI
 
 import java.util.Map;
 
-/**
- * Created by anlia on 2018/6/25.
- */
+
 
 public class SearchWorker {
     SearchPhotoPresenterImpl presenter;

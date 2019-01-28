@@ -10,9 +10,6 @@ import com.youyicheng.KaoLiao.uploadphoto.factory.PhotoFactory;
 import com.youyicheng.KaoLiao.uploadphoto.utils.CompressUtils;
 
 
-/**
- * Created by anlia on 2018/5/16.
- */
 
 public class ResultData {
     private Intent mData;

@@ -1,15 +1,12 @@
 package com.youyicheng.KaoLiao.ui;
 
-import android.os.Bundle;
 import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.youyicheng.KaoLiao.R;
 import com.youyicheng.KaoLiao.base.BaseActivity;
-
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class SendConsultationActivity extends BaseActivity {

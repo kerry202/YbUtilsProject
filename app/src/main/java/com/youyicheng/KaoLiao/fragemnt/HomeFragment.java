@@ -2,7 +2,6 @@ package com.youyicheng.KaoLiao.fragemnt;
 
 
 import android.content.Intent;
-import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.text.TextPaint;
@@ -15,6 +14,7 @@ import android.widget.TextView;
 import com.youyicheng.KaoLiao.R;
 import com.youyicheng.KaoLiao.adapters.HomePagerAdapter;
 import com.youyicheng.KaoLiao.base.BaseFragment;
+import com.youyicheng.KaoLiao.logs.KLog;
 import com.youyicheng.KaoLiao.ui.MsgActivity;
 import com.youyicheng.KaoLiao.ui.SearshActivity;
 import com.youyicheng.KaoLiao.util.DialogUtils;
@@ -63,8 +63,6 @@ public class HomeFragment extends BaseFragment {
     }
 
 
-
-
     @Override
     protected void initView() {
 
@@ -72,6 +70,7 @@ public class HomeFragment extends BaseFragment {
         ConsultationFragment consultationFragment = new ConsultationFragment();
         DataFragment dataFragment = new DataFragment();
 
+        KLog.a("HomeFragment","AAAAAAAAAAAAA");
         fragments.add(experienceFragment);
         titles.add("经验帖");
         titles.add("1v1咨询");

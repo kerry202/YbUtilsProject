@@ -1,16 +1,12 @@
 package com.youyicheng.KaoLiao.fragemnt;
 
 import android.content.Intent;
-import android.os.Bundle;
-import android.os.SystemClock;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.text.TextPaint;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -25,6 +21,7 @@ import com.yb.refrsh.listener.OnLoadMoreListener;
 import com.yb.refrsh.listener.OnRefreshListener;
 import com.youyicheng.KaoLiao.R;
 import com.youyicheng.KaoLiao.base.BaseFragment;
+import com.youyicheng.KaoLiao.logs.KLog;
 import com.youyicheng.KaoLiao.ui.ApplyActivity;
 import com.youyicheng.KaoLiao.util.Logs;
 import com.youyicheng.KaoLiao.util.MyEvents;
@@ -34,11 +31,10 @@ import org.greenrobot.eventbus.Subscribe;
 import java.util.ArrayList;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
-import butterknife.Unbinder;
 
 public class MeFragment extends BaseFragment implements OnRefreshListener, OnLoadMoreListener {
+
     @BindView(R.id.me_set)
     ImageView meSet;
     @BindView(R.id.me_msg)
@@ -87,7 +83,6 @@ public class MeFragment extends BaseFragment implements OnRefreshListener, OnLoa
     @BindView(R.id.refreshLayout)
     SmartRefreshLayout refreshLayout;
 
-
     private ArrayList<Fragment> fragments = new ArrayList<>();
     private ArrayList<String> titles = new ArrayList<>();
     private MeColltionFragment meColltionFragment;
@@ -104,6 +99,8 @@ public class MeFragment extends BaseFragment implements OnRefreshListener, OnLoa
     @Override
     protected void initView() {
 
+        KLog.a("MeFragment", "AAAAAAAAAAAAA");
+
         RequestOptions mRequestOptions = RequestOptions.circleCropTransform()
                 .diskCacheStrategy(DiskCacheStrategy.NONE)//不做磁盘缓存
                 .skipMemoryCache(true);//不做内存缓存
@@ -111,7 +108,6 @@ public class MeFragment extends BaseFragment implements OnRefreshListener, OnLoa
                 .load(R.mipmap.test_icon)
                 .apply(mRequestOptions)
                 .into(userPhoto);
-
 
         refreshLayout.autoRefresh();
         refreshLayout.setOnRefreshListener(this);

@@ -41,6 +41,7 @@
             android:orientation="horizontal">
 
             <TextView
+                android:id="@+id/tv1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
@@ -51,6 +52,7 @@
                 android:textStyle="bold" />
 
             <TextView
+                android:id="@+id/tv2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
@@ -62,6 +64,7 @@
         </LinearLayout>
 
         <TextView
+            android:id="@+id/tv3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
@@ -171,6 +174,7 @@
 
 
                 <TextView
+                    android:id="@+id/major_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/dp9"
@@ -203,6 +207,7 @@
                 android:background="@color/price_red" />
 
             <TextView
+                android:id="@+id/des1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
@@ -215,6 +220,7 @@
         </LinearLayout>
 
         <TextView
+            android:id="@+id/des2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"

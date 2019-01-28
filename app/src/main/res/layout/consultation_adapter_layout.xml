@@ -9,12 +9,14 @@
     android:paddingBottom="@dimen/dp10">
 
     <ImageView
+        android:id="@+id/goods_iv"
         android:layout_width="@dimen/dp145"
         android:layout_height="@dimen/dp80"
         android:layout_gravity="center_horizontal"
         android:src="@mipmap/orange_logo" />
 
     <TextView
+        android:id="@+id/goods_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/dp18"
@@ -25,6 +27,7 @@
         android:textSize="15dp" />
 
     <TextView
+        android:id="@+id/goods_des"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/dp18"
@@ -36,6 +39,7 @@
         android:textSize="@dimen/dp12" />
 
     <TextView
+        android:id="@+id/goods_tv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/dp18"

@@ -20,15 +20,27 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.google.gson.Gson;
 import com.youyicheng.KaoLiao.R;
 import com.youyicheng.KaoLiao.base.BaseActivity;
+import com.youyicheng.KaoLiao.config.MyInterface;
 import com.youyicheng.KaoLiao.fragemnt.HomeFragment;
 import com.youyicheng.KaoLiao.fragemnt.MeFragment;
+import com.youyicheng.KaoLiao.http.HttpUtils;
+import com.youyicheng.KaoLiao.http.OnDataListener;
+import com.youyicheng.KaoLiao.http.RequestState;
+import com.youyicheng.KaoLiao.module.IsSenior;
+import com.youyicheng.KaoLiao.module.RegisterModule;
 import com.youyicheng.KaoLiao.util.CustomPopWindow;
 import com.youyicheng.KaoLiao.util.DialogUtils;
+import com.youyicheng.KaoLiao.util.Logs;
 import com.youyicheng.KaoLiao.util.MyEvents;
+import com.youyicheng.KaoLiao.util.SPUtils;
+import com.youyicheng.KaoLiao.util.ToastUtil;
 
 import org.greenrobot.eventbus.EventBus;
+
+import java.util.HashMap;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -98,7 +110,9 @@ public class MainActivity extends BaseActivity {
 
                 break;
             case R.id.send_tv:
-                showDialog();
+
+                isSenior();
+
                 break;
             case R.id.me_tv:
 
@@ -108,6 +122,34 @@ public class MainActivity extends BaseActivity {
                         .commit();
                 break;
         }
+    }
+
+    private void isSenior() {
+        HashMap<String, String> params = new HashMap<>();
+        String token = (String) SPUtils.getParam(activity, "token", "");
+        params.put("token", token);
+
+        HttpUtils.getInstance().sendRequest(activity, params, RequestState.STATE_DIALOG, MyInterface.IsSenior, new OnDataListener() {
+            @Override
+            public void onSuccess(String data) {
+                IsSenior registerModule = new Gson().fromJson(data, IsSenior.class);
+                Logs.s("     验证学长 onNext  " + registerModule);
+                if (registerModule != null) {
+                    if (registerModule.data.is_senior) {
+                        showDialog();
+                    } else {
+                        startActivity(new Intent(activity, ApplyActivity.class));
+
+                    }
+                }
+            }
+
+            @Override
+            public void onError(String msg) {
+                Logs.s("     验证学长 onError  " + msg);
+
+            }
+        });
     }
 
     private void showDialog() {

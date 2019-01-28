@@ -10,9 +10,6 @@ import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * Created by anlia on 2018/5/16.
- */
 
 public abstract class BaseWorker {
     protected Uri mUri;

@@ -3,9 +3,6 @@ package com.youyicheng.KaoLiao.uploadphoto.search;
 import java.util.List;
 import java.util.Map;
 
-/**
- * Created by anlia on 2018/1/9.
- */
 
 public interface InterfaceManager {
     /**

@@ -2,10 +2,6 @@ package com.youyicheng.KaoLiao.fragemnt;
 
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.bumptech.glide.request.RequestOptions;
 import com.youyicheng.KaoLiao.R;
 import com.youyicheng.KaoLiao.adapters.SendAdapter;
 import com.youyicheng.KaoLiao.base.BaseFragment;
@@ -29,7 +25,6 @@ public class MeSendFragment extends BaseFragment {
     }
 
 
-
     @Override
     protected void initData() {
 
@@ -48,4 +43,6 @@ public class MeSendFragment extends BaseFragment {
 
 
     }
+
+
 }

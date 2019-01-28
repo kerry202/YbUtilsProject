@@ -17,9 +17,6 @@ import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * Created by anlia on 2017/12/18.
- */
 
 public class PhotoFactory {
     private Context mContext;

@@ -13,9 +13,6 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
-/**
- * Created by anlia on 2017/12/18.
- */
 
 public class UriUtils {
     /**

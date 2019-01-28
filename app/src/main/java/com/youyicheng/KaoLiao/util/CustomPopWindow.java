@@ -18,7 +18,7 @@ import android.widget.PopupWindow;
 
 /**
  * 自定义PopWindow类，封装了PopWindow的一些常用属性，用Builder模式支持链式调用
- * Created by yangbo on 17/12/14.
+ * Created by yangbo on
  */
 
 public class CustomPopWindow implements PopupWindow.OnDismissListener {

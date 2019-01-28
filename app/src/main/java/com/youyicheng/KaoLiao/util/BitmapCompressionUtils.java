@@ -17,7 +17,6 @@ public class BitmapCompressionUtils {
 
     /**
      * 压缩图片（质量压缩）
-     *
      * @param bitmap
      */
     public static File compressImage(Bitmap bitmap) {
