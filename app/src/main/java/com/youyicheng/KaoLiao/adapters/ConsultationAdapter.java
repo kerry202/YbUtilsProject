@@ -35,10 +35,10 @@ public class ConsultationAdapter extends BaseQuickAdapter<GoodsListBean.DataBean
         goods_title = helper.getView(R.id.goods_title);
         goods_des = helper.getView(R.id.goods_des);
         goods_tv = helper.getView(R.id.goods_tv);
-
+        
         goods_title.setText(item.goods_name);
         goods_des.setText("" + item.intro);
-        goods_tv.setText("¥ " + item.price + "/" + item.comments + "分钟");
+        goods_tv.setText("¥ " + item.price + "/" + item.comments + "份");
 
         Glide.with(activity)
                 .load(item.goods_img)

@@ -7,35 +7,24 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
-import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Base64;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.google.gson.Gson;
 import com.youyicheng.KaoLiao.R;
-import com.youyicheng.KaoLiao.adapters.AddressAdapter;
-import com.youyicheng.KaoLiao.adapters.CityAdapter;
-import com.youyicheng.KaoLiao.adapters.MajorAdapter;
-import com.youyicheng.KaoLiao.adapters.SchoolAdapter;
 import com.youyicheng.KaoLiao.base.BaseActivity;
 import com.youyicheng.KaoLiao.config.MyInterface;
 import com.youyicheng.KaoLiao.http.HttpUtils;
 import com.youyicheng.KaoLiao.http.OnDataListener;
 import com.youyicheng.KaoLiao.http.RequestState;
-import com.youyicheng.KaoLiao.module.AddressBean;
-import com.youyicheng.KaoLiao.module.CityBean;
-import com.youyicheng.KaoLiao.module.MajorBean;
-import com.youyicheng.KaoLiao.module.SchoolBean;
 import com.youyicheng.KaoLiao.uploadphoto.factory.PhotoFactory;
 import com.youyicheng.KaoLiao.uploadphoto.result.ResultData;
 import com.youyicheng.KaoLiao.util.BitmapCompressionUtils;
@@ -49,13 +38,11 @@ import org.greenrobot.eventbus.Subscribe;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class ApplyActivity extends BaseActivity {
@@ -175,7 +162,6 @@ public class ApplyActivity extends BaseActivity {
         Drawable whiteDrawable = activity.getResources().getDrawable(R.mipmap.white_circle_icon);
         redDrawable.setBounds(0, 0, 56, 56);
         whiteDrawable.setBounds(0, 0, 56, 56);
-
         switch (view.getId()) {
             case R.id.title_back:
                 finish();
@@ -200,7 +186,6 @@ public class ApplyActivity extends BaseActivity {
 
                 selectNo.setCompoundDrawables(redDrawable, null, null, null);
                 selectNo.setCompoundDrawablePadding(10);
-
                 break;
             case R.id.upload_zheng_rl:
                 uploadPhoto();
@@ -274,9 +259,8 @@ public class ApplyActivity extends BaseActivity {
 
                             File file = BitmapCompressionUtils.compressImage(bitmap);
 
-                            upload1(file);
+                            upload1(bitmap);
 
-                            Logs.s("     上传图片 file  " + resultData);
 
                         } catch (Exception e) {
 
@@ -357,9 +341,32 @@ public class ApplyActivity extends BaseActivity {
         }
     }
 
-    private void upload1(File file) {
+    public static byte[] File2Bytes(File file) {
+        int byte_size = 1024;
+        byte[] b = new byte[byte_size];
+        try {
+            FileInputStream fileInputStream = new FileInputStream(file);
+            ByteArrayOutputStream outputStream = new ByteArrayOutputStream(
+                    byte_size);
+            for (int length; (length = fileInputStream.read(b)) != -1; ) {
+                outputStream.write(b, 0, length);
+            }
+            fileInputStream.close();
+            outputStream.close();
+            return outputStream.toByteArray();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 
-        HttpUtils.getInstance().sendPhoto(activity, file, RequestState.STATE_DIALOG, MyInterface.uploadPhoto, new OnDataListener() {
+    private void upload1(Bitmap bitmap) {
+
+        HashMap<String, String> params = new HashMap<>();
+        params.put("goods_type", "2");
+        params.put("order", "0");
+
+        HttpUtils.getInstance().sendPhoto(activity, params, RequestState.STATE_DIALOG, MyInterface.uploadPhoto, new OnDataListener() {
             @Override
             public void onSuccess(String data) {
 

@@ -15,20 +15,32 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
+import com.google.gson.Gson;
 import com.yb.refrsh.SmartRefreshLayout;
 import com.yb.refrsh.api.RefreshLayout;
 import com.yb.refrsh.listener.OnLoadMoreListener;
 import com.yb.refrsh.listener.OnRefreshListener;
 import com.youyicheng.KaoLiao.R;
 import com.youyicheng.KaoLiao.base.BaseFragment;
+import com.youyicheng.KaoLiao.config.MyInterface;
+import com.youyicheng.KaoLiao.http.HttpUtils;
+import com.youyicheng.KaoLiao.http.OnDataListener;
+import com.youyicheng.KaoLiao.http.RequestState;
 import com.youyicheng.KaoLiao.logs.KLog;
+import com.youyicheng.KaoLiao.module.MyBean;
+import com.youyicheng.KaoLiao.module.MyColltionBean;
+import com.youyicheng.KaoLiao.module.MyFollowBean;
 import com.youyicheng.KaoLiao.ui.ApplyActivity;
 import com.youyicheng.KaoLiao.util.Logs;
 import com.youyicheng.KaoLiao.util.MyEvents;
+import com.youyicheng.KaoLiao.util.SPUtils;
+import com.youyicheng.KaoLiao.util.ToastUtil;
 
 import org.greenrobot.eventbus.Subscribe;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -83,8 +95,6 @@ public class MeFragment extends BaseFragment implements OnRefreshListener, OnLoa
     @BindView(R.id.refreshLayout)
     SmartRefreshLayout refreshLayout;
 
-    private ArrayList<Fragment> fragments = new ArrayList<>();
-    private ArrayList<String> titles = new ArrayList<>();
     private MeColltionFragment meColltionFragment;
     private MeFollowFragment meFollowFragment;
     private MeOrderFragment meOrderFragment;
@@ -98,16 +108,6 @@ public class MeFragment extends BaseFragment implements OnRefreshListener, OnLoa
 
     @Override
     protected void initView() {
-
-        KLog.a("MeFragment", "AAAAAAAAAAAAA");
-
-        RequestOptions mRequestOptions = RequestOptions.circleCropTransform()
-                .diskCacheStrategy(DiskCacheStrategy.NONE)//不做磁盘缓存
-                .skipMemoryCache(true);//不做内存缓存
-        Glide.with(getActivity())
-                .load(R.mipmap.test_icon)
-                .apply(mRequestOptions)
-                .into(userPhoto);
 
         refreshLayout.autoRefresh();
         refreshLayout.setOnRefreshListener(this);
@@ -135,7 +135,7 @@ public class MeFragment extends BaseFragment implements OnRefreshListener, OnLoa
 
     @Subscribe
     public void onEvent(MyEvents event) {
-
+        initData();
 
         Logs.s("   收到消息:   " + event.errmsg);
     }
@@ -152,6 +152,112 @@ public class MeFragment extends BaseFragment implements OnRefreshListener, OnLoa
     @Override
     protected void initData() {
 
+        getMyColltion();
+        getFollowData();
+
+        String token = (String) SPUtils.getParam(getActivity(), "token", "");
+        HashMap<String, String> params = new HashMap<>();
+        params.put("token", token);
+
+        HttpUtils.getInstance().sendPhoto(getActivity(), params, RequestState.STATE_DIALOG, MyInterface.myData, new OnDataListener() {
+            @Override
+            public void onSuccess(String data) {
+                refreshLayout.finishRefresh();  //下拉刷新完成
+
+                MyBean myBean = new Gson().fromJson(data, MyBean.class);
+                if (myBean != null) {
+                    if (myBean.data != null) {
+                        RequestOptions mRequestOptions = RequestOptions.circleCropTransform()
+                                .diskCacheStrategy(DiskCacheStrategy.NONE)
+                                .skipMemoryCache(true);
+                        Glide.with(getActivity())
+                                .load(myBean.data.head_img)
+                                .apply(mRequestOptions)
+                                .into(userPhoto);
+
+                        userName.setText(myBean.data.nickname);
+                        userFlag.setText("" + myBean.data.sign);
+
+                    }
+
+                } else {
+                    ToastUtil.show(getActivity(), myBean.message);
+                }
+                Logs.s("     我的信息 onNext  " + myBean);
+
+            }
+
+            @Override
+            public void onError(String msg) {
+
+                Logs.s("     我的信息 onError  " + msg);
+
+            }
+        });
+
+    }
+
+    private void getFollowData() {
+
+        HashMap<String, String> params = new HashMap<>();
+
+        HttpUtils.getInstance().sendRequest(getActivity(), params, RequestState.STATE_DIALOG, MyInterface.myfollows, new OnDataListener() {
+            @Override
+            public void onSuccess(String data) {
+                MyFollowBean myFollowBean = new Gson().fromJson(data, MyFollowBean.class);
+
+                if (myFollowBean.data != null && myFollowBean.data.size() > 0) {
+                    followCount.setText("" + myFollowBean.data.size());
+                    meFollowFragment.setData(myFollowBean.data);
+
+                } else {
+                    followCount.setText("0");
+                }
+
+                Logs.s("     我的关注 onNext  " + myFollowBean);
+
+
+            }
+
+            @Override
+            public void onError(String msg) {
+                Logs.s("     我的关注 onError  " + msg);
+
+            }
+        });
+    }
+
+    List<MyColltionBean.DataBean> arrayList = new ArrayList<>();
+
+    private void getMyColltion() {
+        HashMap<String, String> params = new HashMap<>();
+
+        HttpUtils.getInstance().sendRequest(getActivity(), params, RequestState.STATE_DIALOG, MyInterface.myColltion, new OnDataListener() {
+            @Override
+            public void onSuccess(String data) {
+
+                MyColltionBean myColltionBean = new Gson().fromJson(data, MyColltionBean.class);
+
+                if (myColltionBean.data != null && myColltionBean.data.size() > 0) {
+                    arrayList = myColltionBean.data;
+                    meColltionFragment.setData(arrayList);
+                    colltionCount.setText(myColltionBean.data.size() + "");
+
+                } else {
+                    colltionCount.setText("0");
+                }
+
+                Logs.s("     收藏 onNext  " + myColltionBean);
+
+
+            }
+
+            @Override
+            public void onError(String msg) {
+                Logs.s("     收藏 onError  " + msg);
+
+            }
+        });
     }
 
 
@@ -336,14 +442,12 @@ public class MeFragment extends BaseFragment implements OnRefreshListener, OnLoa
 
     @Override
     public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
-        refreshLayout.finishLoadMore(); //上啦加载完成
 
     }
 
     @Override
     public void onRefresh(@NonNull RefreshLayout refreshLayout) {
-        refreshLayout.finishRefresh();  //下拉刷新完成
-        refreshLayout.finishLoadMoreWithNoMoreData();  //已经没有更多了
+        initData();
 
     }
 }

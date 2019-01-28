@@ -21,6 +21,7 @@
         android:orientation="vertical">
 
         <TextView
+            android:id="@+id/title1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="啦啦啦啦"
@@ -29,6 +30,7 @@
             android:textStyle="bold" />
 
         <TextView
+            android:id="@+id/des2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dp10"
@@ -39,6 +41,7 @@
     </LinearLayout>
 
     <TextView
+        android:id="@+id/cancle_follow"
         android:layout_width="wrap_content"
         android:layout_height="@dimen/dp25"
         android:layout_alignParentRight="true"

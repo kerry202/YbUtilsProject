@@ -53,6 +53,17 @@ public class ConsultationFragment extends BaseFragment implements OnRefreshListe
     @BindView(R.id.no_data_rl)
     RelativeLayout noDataRl;
 
+    private String order = "0";
+
+    public void setNewData(List<GoodsListBean.DataBean> data) {
+        this.arrayList = data;
+    }
+
+
+    public void setOrderID(String order) {
+        this.order = order;
+    }
+
     private List<GoodsListBean.DataBean> arrayList = new ArrayList<>();
     private int state = 0;
     private ConsultationAdapter consultationAdapter;

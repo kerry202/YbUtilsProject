@@ -30,6 +30,7 @@ import com.youyicheng.KaoLiao.util.MyEvents;
 import com.youyicheng.KaoLiao.util.SPUtils;
 import com.youyicheng.KaoLiao.util.ToastUtil;
 
+import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
 import java.util.ArrayList;
@@ -181,6 +182,7 @@ public class DetailsActivity extends BaseActivity {
                     ToastUtil.show(activity, "取消收藏");
                     detailsColletionTv.setText("收藏");
                 }
+                EventBus.getDefault().post(new MyEvents<>());
                 Logs.s("     收藏 onNext  " + data);
 
             }

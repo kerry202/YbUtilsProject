@@ -8,13 +8,16 @@ import android.os.Bundle;
 import com.google.gson.Gson;
 import com.kaopiz.kprogresshud.KProgressHUD;
 import com.lzy.okgo.OkGo;
+import com.lzy.okgo.cache.CacheMode;
 import com.lzy.okgo.callback.StringCallback;
+import com.lzy.okgo.request.PostRequest;
 import com.youyicheng.KaoLiao.base.OrangeApp;
 import com.youyicheng.KaoLiao.config.MyInterface;
 import com.youyicheng.KaoLiao.module.Bean;
 import com.youyicheng.KaoLiao.module.IsSenior;
 import com.youyicheng.KaoLiao.ui.LoginActivity;
 import com.youyicheng.KaoLiao.util.Logs;
+import com.youyicheng.KaoLiao.util.SPUtils;
 import com.youyicheng.KaoLiao.util.ToastUtil;
 
 import org.json.JSONObject;
@@ -22,8 +25,11 @@ import org.json.JSONObject;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import okhttp3.Call;
+import okhttp3.MediaType;
+import okhttp3.RequestBody;
 import okhttp3.Response;
 
 public class HttpUtils<T> {
@@ -44,6 +50,10 @@ public class HttpUtils<T> {
 
 
     public void sendRequest(final Activity activity, HashMap<String, Object> params, final RequestState state, String url, final OnDataListener onDataListener) {
+
+        String token = (String) SPUtils.getParam(activity, "token", "");
+
+        params.put("token", token);
 
         JSONObject jsonObject = new JSONObject(params);
         if (state == RequestState.STATE_DIALOG)
@@ -86,13 +96,43 @@ public class HttpUtils<T> {
                 });
     }
 
-    public void sendPhoto(final Activity activity, File uri, final RequestState state, String url, final OnDataListener onDataListener) {
 
+    public void sendPhoto(final Activity activity, HashMap<String, byte[]> params, final RequestState state, String url, final OnDataListener onDataListener) {
+
+
+//        PostRequest post = OkGo.post(BaseUrl + url);
+//
+//        String reQuestParam = "?";
+//
+//        for (String param : params.keySet()) {
+//            post.params("file", params.get(param));
+//            reQuestParam = reQuestParam + param + "=" + params.get(param) + "&";
+//        }
+//
+//
+//        post.cacheKey(BaseUrl + url)
+//                .isMultipart(true).cacheMode(CacheMode.FIRST_CACHE_THEN_REQUEST)
+//                .execute(new StringCallback() {
+//                    @Override
+//                    public void onSuccess(String s, Call call, Response response) {
+//                        onDataListener.onSuccess(s);
+//                    }
+//
+//                    @Override
+//                    public void onError(Call call, Response response, Exception e) {
+//                        onDataListener.onError(e.getMessage());
+//                    }
+//                });
+
+
+        JSONObject jsonObject = new JSONObject(params);
         if (state == RequestState.STATE_DIALOG)
             showDialog(activity);
 
+        Logs.s("   jsonObject   " + jsonObject);
+
         OkGo.post(BaseUrl + url).tag(activity)
-                .params("file", uri)
+                .upJson(jsonObject)
                 .execute(new StringCallback() {
                     @Override
                     public void onSuccess(String s, Call call, Response response) {

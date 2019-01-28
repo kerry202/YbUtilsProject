@@ -159,6 +159,7 @@ public class ExperienceActivity extends BaseActivity {
                 Glide.with(activity)
                         .load(senior.head_img)
                         .into(detailsUserIcon);
+
                 detailsUserName.setText(senior.nickname);
                 majorTv.setText(senior.school + "|" + senior.major);
                 title1.setText(detailBean.data.goods_name);

@@ -34,8 +34,11 @@ import com.youyicheng.KaoLiao.module.FollowBean;
 import com.youyicheng.KaoLiao.module.LoginBean;
 import com.youyicheng.KaoLiao.ui.StudentDetailActivity;
 import com.youyicheng.KaoLiao.util.Logs;
+import com.youyicheng.KaoLiao.util.MyEvents;
 import com.youyicheng.KaoLiao.util.SPUtils;
 import com.youyicheng.KaoLiao.util.ToastUtil;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.util.HashMap;
 import java.util.List;
@@ -250,6 +253,8 @@ public class DetailsConsultationFragment extends BaseFragment implements OnRefre
                 } else {
                     ToastUtil.show(getActivity(), followBean.message);
                 }
+                EventBus.getDefault().post(new MyEvents<>());
+
 
             }
 

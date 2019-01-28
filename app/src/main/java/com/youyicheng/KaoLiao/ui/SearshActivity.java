@@ -20,6 +20,7 @@ import com.youyicheng.KaoLiao.adapters.MyBaseAdapter;
 import com.youyicheng.KaoLiao.R;
 import com.youyicheng.KaoLiao.adapters.AddressAdapter;
 import com.youyicheng.KaoLiao.base.BaseActivity;
+import com.youyicheng.KaoLiao.util.SPUtils;
 import com.youyicheng.KaoLiao.views.FlowTagView;
 
 import org.greenrobot.eventbus.Subscribe;
@@ -54,7 +55,8 @@ public class SearshActivity extends BaseActivity {
     @BindView(R.id.searsh_rl)
     RelativeLayout searsh_rl;
     private ArrayList<String> titles = new ArrayList<>();
-//    private AddressAdapter addressAdapter;
+    private int state;
+    //    private AddressAdapter addressAdapter;
 
     @Override
     protected int getLayoutId() {
@@ -69,6 +71,7 @@ public class SearshActivity extends BaseActivity {
     @Override
     protected void initView() {
 
+        state = getIntent().getIntExtra("state", 0);
 
         bitmaps.add("#考研秘诀#");
         bitmaps.add("#测试1#");
@@ -116,7 +119,14 @@ public class SearshActivity extends BaseActivity {
                 if (keyCode == KeyEvent.KEYCODE_ENTER && event.getAction() == KeyEvent.ACTION_DOWN) {
                     //搜索
                     hideEsc();
-                    startActivity(new Intent(activity, SearshResultActivity.class));
+                    Intent intent = new Intent(activity, SearshResultActivity.class);
+
+                    String token = (String) SPUtils.getParam(activity, "token", "");
+                    intent.putExtra("goods_type", "" + state);
+                    intent.putExtra("token", token);
+                    intent.putExtra("order", "0");
+                    intent.putExtra("keyword", inputEt.getText().toString());
+                    startActivity(intent);
 
                 }
                 return false;

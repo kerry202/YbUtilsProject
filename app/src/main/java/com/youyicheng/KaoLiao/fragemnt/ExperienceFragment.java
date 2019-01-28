@@ -46,6 +46,7 @@ public class ExperienceFragment extends BaseFragment implements OnRefreshListene
     private List<GoodsListBean.DataBean> arrayList = new ArrayList<>();
     private ExperienceAdapter experienceAdapter;
     private int state = 0;
+    private String order = "0";
 
     @Override
     protected int getLayoutId() {
@@ -60,7 +61,6 @@ public class ExperienceFragment extends BaseFragment implements OnRefreshListene
         refreshLayout.setOnLoadMoreListener(this);
 
         experienceRecycler.setLayoutManager(new LinearLayoutManager(getActivity()));
-
 
         experienceAdapter = new ExperienceAdapter(getActivity(), arrayList);
 
@@ -85,7 +85,7 @@ public class ExperienceFragment extends BaseFragment implements OnRefreshListene
 
         HashMap<String, String> params = new HashMap<>();
         params.put("goods_type", "0");
-        params.put("order", "0");
+        params.put("order", order);
 
         HttpUtils.getInstance().sendRequest(getActivity(), params, RequestState.STATE_DIALOG, MyInterface.GoogsList, new OnDataListener() {
             @Override
@@ -105,7 +105,6 @@ public class ExperienceFragment extends BaseFragment implements OnRefreshListene
                         arrayList = registerModule.data;
                         experienceAdapter.setNewData(arrayList);
                     }
-
                 } else {
                     ToastUtil.show(getActivity(), registerModule.message);
                 }
@@ -118,7 +117,6 @@ public class ExperienceFragment extends BaseFragment implements OnRefreshListene
                 state = 0;
             }
         });
-
     }
 
     @Override
@@ -135,4 +133,13 @@ public class ExperienceFragment extends BaseFragment implements OnRefreshListene
         Logs.s(" ExperienceFragment  onRefresh   ");
     }
 
+    public void setNewData(List<GoodsListBean.DataBean> data) {
+        this.arrayList = data;
+        experienceAdapter.setNewData(data);
+    }
+
+
+    public void setOrderID(String order) {
+        this.order = order;
+    }
 }

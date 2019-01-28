@@ -70,7 +70,7 @@ public class HomeFragment extends BaseFragment {
         ConsultationFragment consultationFragment = new ConsultationFragment();
         DataFragment dataFragment = new DataFragment();
 
-        KLog.a("HomeFragment","AAAAAAAAAAAAA");
+        KLog.a("HomeFragment", "AAAAAAAAAAAAA");
         fragments.add(experienceFragment);
         titles.add("经验帖");
         titles.add("1v1咨询");
@@ -160,6 +160,8 @@ public class HomeFragment extends BaseFragment {
 
     }
 
+    private int count = 0;
+
     @OnClick({R.id.home_sort, R.id.home_msg, R.id.home_searsh, R.id.home_jyt_ll, R.id.home_1v1_ll, R.id.home_data_ll})
     public void onViewClicked(View view) {
         switch (view.getId()) {
@@ -171,19 +173,24 @@ public class HomeFragment extends BaseFragment {
                 startActivity(new Intent(getActivity(), MsgActivity.class));
                 break;
             case R.id.home_searsh:
-                startActivity(new Intent(getActivity(), SearshActivity.class));
+                Intent intent = new Intent(getActivity(), SearshActivity.class);
+                intent.putExtra("state",  count);
+                startActivity(intent);
                 break;
 
             case R.id.home_jyt_ll:
-                homePager.setCurrentItem(0);
+                count = 0;
+                homePager.setCurrentItem(count);
                 setColor1();
                 break;
             case R.id.home_1v1_ll:
-                homePager.setCurrentItem(1);
+                count = 1;
+                homePager.setCurrentItem(count);
                 setColor2();
                 break;
             case R.id.home_data_ll:
-                homePager.setCurrentItem(2);
+                count = 2;
+                homePager.setCurrentItem(count);
                 setColor3();
                 break;
         }

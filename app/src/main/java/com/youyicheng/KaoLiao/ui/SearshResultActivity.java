@@ -11,14 +11,26 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.google.gson.Gson;
 import com.youyicheng.KaoLiao.R;
 import com.youyicheng.KaoLiao.adapters.HomePagerAdapter;
 import com.youyicheng.KaoLiao.base.BaseActivity;
+import com.youyicheng.KaoLiao.config.MyInterface;
 import com.youyicheng.KaoLiao.fragemnt.ConsultationFragment;
 import com.youyicheng.KaoLiao.fragemnt.DataFragment;
 import com.youyicheng.KaoLiao.fragemnt.ExperienceFragment;
+import com.youyicheng.KaoLiao.http.HttpUtils;
+import com.youyicheng.KaoLiao.http.OnDataListener;
+import com.youyicheng.KaoLiao.http.RequestState;
+import com.youyicheng.KaoLiao.module.GoodsListBean;
+import com.youyicheng.KaoLiao.module.LoginBean;
+import com.youyicheng.KaoLiao.util.Logs;
+import com.youyicheng.KaoLiao.util.SPUtils;
+import com.youyicheng.KaoLiao.util.ToastUtil;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -64,6 +76,13 @@ public class SearshResultActivity extends BaseActivity {
     private ArrayList<Fragment> fragments = new ArrayList<>();
     private ArrayList<String> titles = new ArrayList<>();
     private HomePagerAdapter homePagerAdapter;
+    private String goods_type;
+    private String token;
+    private String order;
+    private String keyword;
+    private ExperienceFragment experienceFragment;
+    private ConsultationFragment consultationFragment;
+    private DataFragment dataFragment;
 
     @Override
     protected int getLayoutId() {
@@ -72,11 +91,25 @@ public class SearshResultActivity extends BaseActivity {
 
     @Override
     protected void initView() {
-        ExperienceFragment experienceFragment = new ExperienceFragment();
-        ConsultationFragment consultationFragment = new ConsultationFragment();
-        DataFragment dataFragment = new DataFragment();
 
+//        intent.putExtra("goods_type", "" + state);
+//        intent.putExtra("token", token);
+//        intent.putExtra("order", "0");
+//        intent.putExtra("keyword", inputEt.getText().toString());
+
+        goods_type = getIntent().getStringExtra("goods_type");
+        token = getIntent().getStringExtra("token");
+        order = getIntent().getStringExtra("order");
+        keyword = getIntent().getStringExtra("keyword");
+
+        experienceFragment = new ExperienceFragment();
+        experienceFragment.setOrderID(order);
+        consultationFragment = new ConsultationFragment();
+        dataFragment = new DataFragment();
+        consultationFragment.setOrderID(order);
+        dataFragment.setOrderID(order);
         fragments.add(experienceFragment);
+
         titles.add("经验帖");
         titles.add("1v1咨询");
         titles.add("备考资料");
@@ -88,6 +121,7 @@ public class SearshResultActivity extends BaseActivity {
         searshPager.setAdapter(homePagerAdapter);
 
         searshPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+
             @Override
             public void onPageScrolled(int i, float v, int i1) {
 
@@ -111,13 +145,36 @@ public class SearshResultActivity extends BaseActivity {
             }
         });
 
-//        searshTab.setTabMode(TabLayout.MODE_FIXED);
-//        searshTab.setupWithViewPager(searshPager);
-//        searshTab.setSelectedTabIndicatorColor(getResources().getColor(R.color.price_red));
     }
 
     @Override
     protected void initData() {
+
+        HashMap<String, String> params = new HashMap<>();
+        params.put("token", token);
+        params.put("goods_type", goods_type);
+        params.put("order", order);
+        params.put("keyword", keyword);
+
+        HttpUtils.getInstance().sendRequest(activity, params, RequestState.STATE_DIALOG, MyInterface.searchList, new OnDataListener() {
+            @Override
+            public void onSuccess(String data) {
+                Logs.s("     搜索结果 onNext  " + data);
+
+                GoodsListBean goodsListBean = new Gson().fromJson(data, GoodsListBean.class);
+
+                if (goodsListBean.data != null && goodsListBean.data.size() > 0) {
+                    experienceFragment.setNewData(goodsListBean.data);
+                }
+
+            }
+
+            @Override
+            public void onError(String msg) {
+                Logs.s("     搜索结果 onError  " + msg);
+
+            }
+        });
 
     }
 

@@ -46,6 +46,19 @@ public class DataFragment extends BaseFragment implements OnRefreshListener, OnL
     private List<GoodsListBean.DataBean> arrayList = new ArrayList<>();
     private int state = 0;
 
+
+    private String order = "0";
+
+    public void setNewData(List<GoodsListBean.DataBean> data) {
+        this.arrayList = data;
+    }
+
+
+    public void setOrderID(String order) {
+        this.order = order;
+    }
+
+
     @Override
     protected int getLayoutId() {
         return R.layout.fragment_experience_layout;
@@ -76,7 +89,7 @@ public class DataFragment extends BaseFragment implements OnRefreshListener, OnL
     protected void initData() {
         HashMap<String, String> params = new HashMap<>();
         params.put("goods_type", "1");
-        params.put("order", "0");
+        params.put("order", order);
         HttpUtils.getInstance().sendRequest(getActivity(), params, RequestState.STATE_DIALOG, MyInterface.GoogsList, new OnDataListener() {
             @Override
             public void onSuccess(String data) {

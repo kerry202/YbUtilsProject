@@ -27,5 +27,11 @@ public class MyInterface {
 
     public static final String addColltion = "Goods/addFavorite";
 
+    public static final String searchList = "Goods/searchList";
+
+    public static final String myData = "User/myInfo";
+    public static final String myColltion = "User/myFavorites";
+    public static final String myfollows = "User/myFollows";
+
 
 }
