@@ -50,7 +50,8 @@ public class MeColltionFragment extends BaseFragment implements OnRefreshListene
     protected void initView() {
 
         experienceRecycler.setLayoutManager(new LinearLayoutManager(getActivity()));
-
+        arrayList.add(null);
+        arrayList.add(null);
         detailsAdapter = new MyColltionAdapter(getActivity(), arrayList);
 
         experienceRecycler.setAdapter(detailsAdapter);
@@ -62,7 +63,7 @@ public class MeColltionFragment extends BaseFragment implements OnRefreshListene
 
                 Intent intent = new Intent(getActivity(), DetailsActivity.class);
                 intent.putExtra("titleName", "备考资料");
-                intent.putExtra("goods_id", arrayList.get(position).goods_id+"");
+                intent.putExtra("goods_id", arrayList.get(position).goods_id + "");
                 startActivity(intent);
             }
         });
