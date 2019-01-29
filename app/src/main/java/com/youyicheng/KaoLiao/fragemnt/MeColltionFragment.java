@@ -62,6 +62,7 @@ public class MeColltionFragment extends BaseFragment implements OnRefreshListene
 
                 Intent intent = new Intent(getActivity(), DetailsActivity.class);
                 intent.putExtra("titleName", "备考资料");
+                intent.putExtra("goods_id", arrayList.get(position).goods_id+"");
                 startActivity(intent);
             }
         });

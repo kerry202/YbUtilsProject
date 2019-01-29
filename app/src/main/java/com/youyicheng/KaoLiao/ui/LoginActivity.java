@@ -8,11 +8,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.gson.Gson;
-import com.lzy.okgo.OkGo;
-import com.lzy.okgo.callback.StringCallback;
 import com.youyicheng.KaoLiao.R;
 import com.youyicheng.KaoLiao.base.BaseActivity;
 import com.youyicheng.KaoLiao.config.MyInterface;
@@ -27,7 +24,6 @@ import com.youyicheng.KaoLiao.util.ToastUtil;
 
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
-import org.json.JSONObject;
 
 import java.util.HashMap;
 
@@ -180,6 +176,7 @@ public class LoginActivity extends BaseActivity {
                 if (registerModule != null && registerModule.result.equals("SUCCESS")) {
                     SPUtils.setParam(activity, "token", registerModule.data.token);
                     SPUtils.setParam(activity, "reg", registerModule.data.reg);
+                    finish();
                 } else {
                     ToastUtil.show(activity, registerModule.message);
                 }

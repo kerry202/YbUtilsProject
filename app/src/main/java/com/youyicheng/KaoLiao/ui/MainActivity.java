@@ -125,6 +125,7 @@ public class MainActivity extends BaseActivity {
     }
 
     private void isSenior() {
+
         HashMap<String, String> params = new HashMap<>();
         String token = (String) SPUtils.getParam(activity, "token", "");
         params.put("token", token);
@@ -139,7 +140,6 @@ public class MainActivity extends BaseActivity {
                         showDialog();
                     } else {
                         startActivity(new Intent(activity, ApplyActivity.class));
-
                     }
                 }
             }

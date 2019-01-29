@@ -27,8 +27,11 @@ import com.youyicheng.KaoLiao.http.OnDataListener;
 import com.youyicheng.KaoLiao.http.RequestState;
 import com.youyicheng.KaoLiao.module.GoodsListBean;
 import com.youyicheng.KaoLiao.ui.DetailsActivity;
+import com.youyicheng.KaoLiao.util.HomeEvents;
 import com.youyicheng.KaoLiao.util.Logs;
 import com.youyicheng.KaoLiao.util.ToastUtil;
+
+import org.greenrobot.eventbus.Subscribe;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -55,6 +58,12 @@ public class ConsultationFragment extends BaseFragment implements OnRefreshListe
 
     private String order = "0";
 
+    @Subscribe
+    public void onEvent(HomeEvents event) {
+        initData();
+        Logs.s(" VVVVVVVVVVVVVVV ");
+    }
+
     public void setNewData(List<GoodsListBean.DataBean> data) {
         this.arrayList = data;
     }
@@ -80,7 +89,7 @@ public class ConsultationFragment extends BaseFragment implements OnRefreshListe
         refreshLayout.setOnLoadMoreListener(this);
         experienceRecycler.setLayoutManager(new GridLayoutManager(getActivity(), 2));
 
-        consultationAdapter = new ConsultationAdapter(getActivity(), arrayList);
+        consultationAdapter = new ConsultationAdapter(getActivity(), arrayList, 1);
         experienceRecycler.setAdapter(consultationAdapter);
 
         consultationAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {

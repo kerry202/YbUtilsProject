@@ -64,7 +64,6 @@ public class FollowAdapter extends BaseQuickAdapter<MyFollowBean.DataBean, BaseV
 
             }
         });
-
     }
 
     private void goFoloow(String url) {

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_height="wrap_content"
     android:background="@color/white">
 
@@ -221,8 +222,9 @@
                         <TextView
                             android:id="@+id/details_user_name"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:layout_height="match_parent"
                             android:layout_gravity="center_vertical"
+                            android:maxLength="7"
                             android:text="锦里学长"
                             android:textColor="@color/gray_333"
                             android:textSize="@dimen/dp15" />
@@ -284,6 +286,7 @@
                 android:background="@color/gray_5" />
 
             <TextView
+                android:maxLength="200"
                 android:id="@+id/des1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -303,8 +306,7 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_marginLeft="@dimen/dp28"
                 android:layout_marginTop="@dimen/dp46"
-                android:layout_marginRight="@dimen/dp28"
-                android:background="@color/price_red" />
+                android:layout_marginRight="@dimen/dp28" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -379,10 +381,30 @@
                 android:layout_marginTop="@dimen/dp15"
                 android:background="@color/gray_5" />
 
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/experience_recycler"
+            <com.yb.refrsh.SmartRefreshLayout
+                android:id="@+id/refreshLayout"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="match_parent"
+                android:layout_below="@+id/text"
+                app:srlAccentColor="#666"
+                app:srlEnableLoadMoreWhenContentNotFull="false"
+                app:srlEnablePreviewInEditMode="false"
+                app:srlPrimaryColor="#fff">
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/experience_recycler"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <com.yb.refrsh.footer.ClassicsFooter
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:srlClassicsSpinnerStyle="Translate" />
+
+
+            </com.yb.refrsh.SmartRefreshLayout>
+
+
 
             <View
                 android:layout_width="match_parent"

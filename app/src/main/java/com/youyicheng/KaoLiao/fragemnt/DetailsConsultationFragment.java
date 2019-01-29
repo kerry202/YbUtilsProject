@@ -147,7 +147,6 @@ public class DetailsConsultationFragment extends BaseFragment implements OnRefre
                     setPager(detailBean);
                 }
 
-
                 List<DetailBean.DataBean.GoodsBean> goods = detailBean.data.goods;
 
                 DetailsAdapter detailsAdapter = new DetailsAdapter(getActivity(), goods);
@@ -160,6 +159,7 @@ public class DetailsConsultationFragment extends BaseFragment implements OnRefre
                 Glide.with(getActivity())
                         .load(senior.head_img)
                         .into(detailsUserIcon);
+
                 detailsUserName.setText(senior.nickname);
                 majorTv.setText(senior.school + "|" + senior.major);
                 if (senior.is_followed == 0) {
@@ -175,6 +175,7 @@ public class DetailsConsultationFragment extends BaseFragment implements OnRefre
                 }
                 DetailBean.DataBean data1 = detailBean.data;
                 tv1.setText("¥ " + data1.price + "/30分钟");
+                des2.setText("" + data1.intro);
                 tv3.setText("" + data1.content);
             }
 
@@ -188,6 +189,8 @@ public class DetailsConsultationFragment extends BaseFragment implements OnRefre
     private void setPager(DetailBean detailBean) {
 
         List<DetailBean.DataBean.GoodsSlideBean> goods_slide = detailBean.data.goods_slide;
+        detailsBannerIndex.setText("1/" + goods_slide.size());
+
         detailsPagerAdapter = new DetailsPagerAdapter(getActivity(), goods_slide);
         detailsBannerPager.setAdapter(detailsPagerAdapter);
         handler.sendEmptyMessageDelayed(1, 3000);
@@ -200,7 +203,7 @@ public class DetailsConsultationFragment extends BaseFragment implements OnRefre
             @Override
             public void onPageSelected(int i) {
 
-                detailsBannerIndex.setText(i + "/" + goods_slide.size());
+                detailsBannerIndex.setText((i + 1) + "/" + goods_slide.size());
 
             }
 

@@ -1,48 +1,61 @@
 package com.youyicheng.KaoLiao.ui;
 
 import android.Manifest;
+import android.content.ContentResolver;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
+import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Base64;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.google.gson.Gson;
 import com.youyicheng.KaoLiao.R;
 import com.youyicheng.KaoLiao.base.BaseActivity;
 import com.youyicheng.KaoLiao.config.MyInterface;
 import com.youyicheng.KaoLiao.http.HttpUtils;
 import com.youyicheng.KaoLiao.http.OnDataListener;
 import com.youyicheng.KaoLiao.http.RequestState;
+import com.youyicheng.KaoLiao.module.ApplyBean;
+import com.youyicheng.KaoLiao.module.PhotoBean;
 import com.youyicheng.KaoLiao.uploadphoto.factory.PhotoFactory;
 import com.youyicheng.KaoLiao.uploadphoto.result.ResultData;
 import com.youyicheng.KaoLiao.util.BitmapCompressionUtils;
 import com.youyicheng.KaoLiao.util.LQRPhotoSelectUtils;
 import com.youyicheng.KaoLiao.util.Logs;
 import com.youyicheng.KaoLiao.util.MyEvents;
+import com.youyicheng.KaoLiao.util.SPUtils;
 import com.youyicheng.KaoLiao.util.ToastUtil;
 
+import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
+import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class ApplyActivity extends BaseActivity {
@@ -84,6 +97,15 @@ public class ApplyActivity extends BaseActivity {
     RelativeLayout getSchoolRl;
     @BindView(R.id.in_time_ll)
     LinearLayout inTimeLl;
+    @BindView(R.id.photo_im1)
+    ImageView photoIm1;
+    @BindView(R.id.photo_im2)
+    ImageView photoIm2;
+
+    @BindView(R.id.im1)
+    ImageView im1;
+    @BindView(R.id.im2)
+    ImageView im2;
     private ArrayList<Fragment> fragments = new ArrayList<>();
     private ArrayList<String> titles = new ArrayList<>();
     private String category_id = "";
@@ -154,6 +176,8 @@ public class ApplyActivity extends BaseActivity {
     }
 
     private boolean select = true;
+    private boolean zheng = false;
+    private boolean fan = false;
 
     @OnClick({R.id.title_back, R.id.title_send, R.id.get_men_class_rl, R.id.get_zy_rl, R.id.get_city_rl, R.id.get_school_rl, R.id.select_yes, R.id.select_no, R.id.upload_zheng_rl, R.id.upload_fan_rl})
     public void onViewClicked(View view) {
@@ -167,6 +191,36 @@ public class ApplyActivity extends BaseActivity {
                 finish();
                 break;
             case R.id.title_send:
+                if (category_id == null || category_id.length() == 0) {
+                    ToastUtil.show(activity, "请先选择门类");
+                    return;
+                }
+                if (major_id == null || major_id.length() == 0) {
+                    ToastUtil.show(activity, "请先选择专业");
+                    return;
+                }
+                if (city_id == null || city_id.length() == 0) {
+                    ToastUtil.show(activity, "请先选择省份");
+                    return;
+                }
+
+                if (inputRxTimeEt.getText().toString().length() == 0) {
+                    ToastUtil.show(activity, "请填写入学年份");
+                    return;
+                }
+
+                if (!zheng) {
+                    ToastUtil.show(activity, "请上传正面照");
+                    return;
+                }
+                if (!fan) {
+                    ToastUtil.show(activity, "请上传反面照");
+                    return;
+                }
+
+                commit();
+
+
                 break;
             case R.id.select_yes:
 
@@ -188,10 +242,10 @@ public class ApplyActivity extends BaseActivity {
                 selectNo.setCompoundDrawablePadding(10);
                 break;
             case R.id.upload_zheng_rl:
-                uploadPhoto();
+                uploadPhoto(1);
                 break;
             case R.id.upload_fan_rl:
-                uploadPhoto();
+                uploadPhoto(2);
                 break;
             case R.id.get_men_class_rl:
                 myStartActivity(1, "门类");//门类
@@ -241,11 +295,56 @@ public class ApplyActivity extends BaseActivity {
         }
     }
 
-    private void uploadPhoto() {
+    private void commit() {
 
-        //相册
+        HashMap<String, String> params = new HashMap<>();
+        if (select) {
+            params.put("type_id", "0");
+        } else {
+            params.put("type_id", "1");
+        }
+        String nickname = (String) SPUtils.getParam(activity, "nickname", "");
+        String head_img = (String) SPUtils.getParam(activity, "head_img", "");
+
+        params.put("nickname", nickname);
+        params.put("head_img", head_img);
+        params.put("category_id", "" + category_id);
+        params.put("major_id", "" + major_id);
+        params.put("city_id", "" + city_id);
+        params.put("school_id", "" + school_id);
+        params.put("sid_img", url1);
+        params.put("id_img", url2);
+
+        HttpUtils.getInstance().sendRequest(activity, params, RequestState.STATE_DIALOG, MyInterface.apply, new OnDataListener() {
+            @Override
+            public void onSuccess(String data) {
+                EventBus.getDefault().post(new MyEvents<>());
+                Logs.s("     提交 onNext  " + data);
+                ApplyBean applyBean = new Gson().fromJson(data, ApplyBean.class);
+                if (applyBean.result.equals("SUCCESS")) {
+
+                } else {
+                    ToastUtil.show(activity, applyBean.message);
+                }
+                finish();
+
+            }
+
+            @Override
+            public void onError(String msg) {
+
+                Logs.s("     提交 onError  " + msg);
+
+            }
+        });
+    }
+
+
+    private void uploadPhoto(int state) {
+
         photoFactory.FromGallery()
                 .StartForResult(new PhotoFactory.OnResultListener() {
+
                     @Override
                     public void OnCancel() {
 
@@ -256,10 +355,9 @@ public class ApplyActivity extends BaseActivity {
                         try {
 
                             Bitmap bitmap = resultData.GetBitmap();
-
                             File file = BitmapCompressionUtils.compressImage(bitmap);
 
-                            upload1(bitmap);
+                            upload(state, file);
 
 
                         } catch (Exception e) {
@@ -341,36 +439,33 @@ public class ApplyActivity extends BaseActivity {
         }
     }
 
-    public static byte[] File2Bytes(File file) {
-        int byte_size = 1024;
-        byte[] b = new byte[byte_size];
-        try {
-            FileInputStream fileInputStream = new FileInputStream(file);
-            ByteArrayOutputStream outputStream = new ByteArrayOutputStream(
-                    byte_size);
-            for (int length; (length = fileInputStream.read(b)) != -1; ) {
-                outputStream.write(b, 0, length);
-            }
-            fileInputStream.close();
-            outputStream.close();
-            return outputStream.toByteArray();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
+    private String url1;
+    private String url2;
 
-    private void upload1(Bitmap bitmap) {
+    private void upload(int state, File file) {
 
-        HashMap<String, String> params = new HashMap<>();
-        params.put("goods_type", "2");
-        params.put("order", "0");
-
-        HttpUtils.getInstance().sendPhoto(activity, params, RequestState.STATE_DIALOG, MyInterface.uploadPhoto, new OnDataListener() {
+        HttpUtils.getInstance().sendPhoto(activity, file, RequestState.STATE_DIALOG, MyInterface.uploadPhoto, new OnDataListener() {
             @Override
             public void onSuccess(String data) {
 
-                Logs.s("     上传图片 onNext  " + data);
+                PhotoBean photoBean = new Gson().fromJson(data, PhotoBean.class);
+
+                if (state == 1) {
+                    zheng = true;
+                    im1.setVisibility(View.GONE);
+                    Glide.with(activity)
+                            .load(photoBean.url)
+                            .into(photoIm1);
+                    url1 = photoBean.url;
+                } else {
+                    fan = true;
+                    im2.setVisibility(View.GONE);
+                    Glide.with(activity)
+                            .load(photoBean.url)
+                            .into(photoIm2);
+                    url2 = photoBean.url;
+                }
+                Logs.s("     上传图片 onNext  " + photoBean);
 
             }
 
@@ -395,4 +490,6 @@ public class ApplyActivity extends BaseActivity {
         startActivityForResult(intent, state);
 
     }
+
+
 }

@@ -14,7 +14,8 @@ public class MyInterface {
     public static final String getMajor = "Config/getMajor";
     public static final String getCity = "Config/getCity";
     public static final String getSchool = "Config/getSchool";
-    public static final String uploadPhoto = "uploads/upload_file_kaoliao.php";
+
+    public static final String uploadPhoto = "Upload/uploadFile";
 
     public static final String goods_detail = "Goods/detail";
     public static final String addFollow = "Senior/addFollow";
@@ -32,6 +33,9 @@ public class MyInterface {
     public static final String myData = "User/myInfo";
     public static final String myColltion = "User/myFavorites";
     public static final String myfollows = "User/myFollows";
+
+    public static final String apply = "Senior/apply";
+    public static final String sendGoods = "Goods/add";
 
 
 }

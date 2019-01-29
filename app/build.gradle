@@ -104,13 +104,10 @@ dependencies {
     implementation 'com.squareup.retrofit2:retrofit:2.3.0'
     implementation 'com.lzy.net:okgo:2.1.3'
     implementation 'com.google.code.gson:gson:2.8.0'
-
     debugImplementation 'com.squareup.leakcanary:leakcanary-android:1.6.3'
     releaseImplementation 'com.squareup.leakcanary:leakcanary-android-no-op:1.6.3'
     // Optional, if you use support library fragments:
     debugImplementation 'com.squareup.leakcanary:leakcanary-support-fragment:1.6.3'
-
-
     implementation 'com.android.support:multidex:1.0.1'
     implementation 'com.android.support:recyclerview-v7:28+'
     //eventbus
@@ -121,8 +118,8 @@ dependencies {
     //butterknife
     implementation 'com.jakewharton:butterknife:8.8.1'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
-
     implementation project(':baseholder')
     implementation 'com.kaopiz:kprogresshud:1.0.5'
     implementation project(':refrsh')
+    implementation project(':easyPhotos')
 }

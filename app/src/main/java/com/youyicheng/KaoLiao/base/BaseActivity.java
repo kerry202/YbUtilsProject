@@ -41,7 +41,7 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
     }
 
     @Subscribe
-    public void onEvent(MyEvents event) {
+    public void onEvent(Object event) {
 
     }
     @Override

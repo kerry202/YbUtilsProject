@@ -28,7 +28,7 @@
                 android:layout_marginBottom="@dimen/dp15"
                 android:background="@drawable/circle_gray_details"
                 android:gravity="center"
-                android:text="1/3"
+                android:text="1/1"
                 android:textColor="@color/white" />
 
         </RelativeLayout>
@@ -220,6 +220,7 @@
         </LinearLayout>
 
         <TextView
+            android:maxLength="200"
             android:id="@+id/des2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

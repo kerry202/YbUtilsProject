@@ -10,8 +10,8 @@ import android.widget.BaseAdapter;
 
 public class FlowTagView extends ViewGroup {
 
-    private int mLineSpacing;//行间距
-    private int mTagSpacing;//各个标签之间的距离
+    private int mLineSpacing;
+    private int mTagSpacing;
     private BaseAdapter mAdapter;
     private TagItemClickListener mListener;
     private DataChangeObserver mObserver;
@@ -35,7 +35,6 @@ public class FlowTagView extends ViewGroup {
 
     private void init(Context context, AttributeSet attrs, int defStyle) {
 
-        //获取属性
         FlowTagConfig config = new FlowTagConfig(context, attrs);
         mLineSpacing = config.getLineSpacing();
         mTagSpacing = config.getTagSpacing();

@@ -46,59 +46,59 @@
         </LinearLayout>
 
         <TextView
-            android:layout_centerVertical="true"
-            android:layout_alignParentRight="true"
             android:id="@+id/evaluate_user_star"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
             android:text="26"
             android:textColor="@color/gray_333"
-            android:textSize="@dimen/dp13"
-             />
+            android:textSize="@dimen/dp13" />
 
     </RelativeLayout>
+
     <TextView
-        android:textSize="@dimen/dp15"
-        android:textColor="@color/gray_333"
-        android:layout_marginTop="@dimen/dp9"
-        android:layout_marginLeft="@dimen/dp68"
-        android:layout_marginRight="@dimen/dp16"
+        android:id="@+id/des1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dp68"
+        android:layout_marginTop="@dimen/dp9"
+        android:layout_marginRight="@dimen/dp16"
         android:text="涨知识了啊"
-        />
+        android:textColor="@color/gray_333"
+        android:textSize="@dimen/dp15" />
 
 
     <RelativeLayout
-        android:layout_marginTop="@dimen/dp9"
-        android:layout_marginLeft="@dimen/dp68"
-        android:layout_marginRight="@dimen/dp16"
-        android:background="@drawable/circle_gray_f5"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dp63">
+        android:layout_height="@dimen/dp63"
+        android:layout_marginLeft="@dimen/dp68"
+        android:layout_marginTop="@dimen/dp9"
+        android:layout_marginRight="@dimen/dp16"
+        android:background="@drawable/circle_gray_f5">
 
         <TextView
-            android:layout_marginRight="@dimen/dp12"
-            android:layout_marginLeft="@dimen/dp11"
-            android:layout_marginTop="@dimen/dp12"
-            android:textSize="@dimen/dp15"
-            android:textColor="@color/gray_333"
+            android:id="@+id/des2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp11"
+            android:layout_marginTop="@dimen/dp12"
+            android:layout_marginRight="@dimen/dp12"
             android:text="作者回复:"
-            />
+            android:textColor="@color/gray_333"
+            android:textSize="@dimen/dp15" />
 
         <TextView
-            android:layout_marginBottom="@dimen/dp12"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="@dimen/dp12"
-            android:textSize="@dimen/dp15"
-            android:textColor="@color/bule_4"
+            android:id="@+id/click_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginRight="@dimen/dp12"
+            android:layout_marginBottom="@dimen/dp12"
             android:text="查看3条回复 >"
-            />
+            android:textColor="@color/bule_4"
+            android:textSize="@dimen/dp15" />
     </RelativeLayout>
 
 

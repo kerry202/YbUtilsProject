@@ -70,7 +70,6 @@ public class HomeFragment extends BaseFragment {
         ConsultationFragment consultationFragment = new ConsultationFragment();
         DataFragment dataFragment = new DataFragment();
 
-        KLog.a("HomeFragment", "AAAAAAAAAAAAA");
         fragments.add(experienceFragment);
         titles.add("经验帖");
         titles.add("1v1咨询");

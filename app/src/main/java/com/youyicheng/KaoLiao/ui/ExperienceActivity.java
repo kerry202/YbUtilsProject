@@ -3,6 +3,7 @@ package com.youyicheng.KaoLiao.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -14,18 +15,26 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
+import com.yb.refrsh.SmartRefreshLayout;
+import com.yb.refrsh.api.RefreshLayout;
+import com.yb.refrsh.listener.OnRefreshListener;
+import com.yb.refrsh.listener.OnRefreshLoadMoreListener;
 import com.youyicheng.KaoLiao.R;
-import com.youyicheng.KaoLiao.adapters.DetailsAdapter;
+import com.youyicheng.KaoLiao.adapters.EvaluateAdapter;
 import com.youyicheng.KaoLiao.base.BaseActivity;
 import com.youyicheng.KaoLiao.config.MyInterface;
 import com.youyicheng.KaoLiao.http.HttpUtils;
 import com.youyicheng.KaoLiao.http.OnDataListener;
 import com.youyicheng.KaoLiao.http.RequestState;
+import com.youyicheng.KaoLiao.module.CommentBean;
 import com.youyicheng.KaoLiao.module.DetailBean;
 import com.youyicheng.KaoLiao.module.FollowBean;
 import com.youyicheng.KaoLiao.util.Logs;
+import com.youyicheng.KaoLiao.util.MyEvents;
 import com.youyicheng.KaoLiao.util.SPUtils;
 import com.youyicheng.KaoLiao.util.ToastUtil;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -36,7 +45,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 
-public class ExperienceActivity extends BaseActivity {
+public class ExperienceActivity extends BaseActivity implements OnRefreshListener, OnRefreshLoadMoreListener {
 
 
     @BindView(R.id.experience_recycler)
@@ -88,6 +97,8 @@ public class ExperienceActivity extends BaseActivity {
     TextView clickAllCommentCount;
     @BindView(R.id.major_tv)
     TextView majorTv;
+    @BindView(R.id.refreshLayout)
+    SmartRefreshLayout refreshLayout;
     private String goods_id;
 
     @Override
@@ -100,17 +111,6 @@ public class ExperienceActivity extends BaseActivity {
 
         goods_id = getIntent().getStringExtra("goods_id");
 
-        ArrayList<String> list = new ArrayList<>();
-
-        for (int i = 0; i < 3; i++) {
-            list.add("");
-        }
-
-        ArrayList<String> list2 = new ArrayList<>();
-
-        for (int i = 0; i < 2; i++) {
-            list2.add("");
-        }
 
         LinearLayoutManager linearLayoutManager1 = new LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false) {
             @Override
@@ -120,9 +120,9 @@ public class ExperienceActivity extends BaseActivity {
         };
         experienceRecycler.setLayoutManager(linearLayoutManager1);
 
-//        EvaluateAdapter evaluateAdapter = new EvaluateAdapter(list);
-
-//        experienceRecycler.setAdapter(evaluateAdapter);
+        evaluateAdapter = new EvaluateAdapter(activity, dataBeanArrayList);
+//
+        experienceRecycler.setAdapter(evaluateAdapter);
 
         LinearLayoutManager linearLayoutManager2 = new LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false) {
             @Override
@@ -153,7 +153,9 @@ public class ExperienceActivity extends BaseActivity {
                 Logs.s("     经验帖 onNext  " + detailBean);
 
                 DetailBean.DataBean.SeniorBean senior = detailBean.data.senior;
-
+                Glide.with(activity)
+                        .load(detailBean.data.goods_img)
+                        .into(im1);
                 SPUtils.setParam(activity, "uid", senior.uid + "");
 
                 Glide.with(activity)
@@ -164,6 +166,8 @@ public class ExperienceActivity extends BaseActivity {
                 majorTv.setText(senior.school + "|" + senior.major);
                 title1.setText(detailBean.data.goods_name);
                 tv2.setText(detailBean.data.content);
+
+                des1.setText(detailBean.data.intro + "");
 
                 if (senior.is_followed == 0) {
                     isFollow = true;
@@ -185,6 +189,43 @@ public class ExperienceActivity extends BaseActivity {
             @Override
             public void onError(String msg) {
                 Logs.s("     经验帖 onError  " + msg);
+            }
+        });
+
+        getCommentData();
+    }
+
+    private List<CommentBean.DataBean> dataBeanArrayList = new ArrayList<>();
+    private EvaluateAdapter evaluateAdapter;
+    private int state = 0;
+
+    private void getCommentData() {
+        HashMap<String, String> params = new HashMap<>();
+        params.put("goods_id", goods_id + "");
+        HttpUtils.getInstance().sendRequest(activity, params, RequestState.STATE_DIALOG, MyInterface.commentList, new OnDataListener() {
+            @Override
+            public void onSuccess(String data) {
+                CommentBean commentBean = new Gson().fromJson(data, CommentBean.class);
+                Logs.s("     评论列表 onNext  " + commentBean);
+                dataBeanArrayList = commentBean.data;
+
+                if (dataBeanArrayList != null && dataBeanArrayList.size() > 0) {
+                    commentCount.setText("研友评价 (" + dataBeanArrayList.size() + ")");
+                    if (state == 0) {
+                        evaluateAdapter.setNewData(dataBeanArrayList);
+                    } else {
+                        evaluateAdapter.addData(dataBeanArrayList);
+                    }
+                } else {
+                    commentCount.setText("研友评价 (0)");
+                }
+                refreshLayout.finishLoadMore();
+
+            }
+
+            @Override
+            public void onError(String msg) {
+                Logs.s("     评论列表 onError  " + msg);
             }
         });
     }
@@ -212,6 +253,7 @@ public class ExperienceActivity extends BaseActivity {
                 }
                 break;
             case R.id.colltion_rl:
+
                 break;
             case R.id.student_detail:
                 startActivity(new Intent(activity, StudentDetailActivity.class));
@@ -236,6 +278,7 @@ public class ExperienceActivity extends BaseActivity {
                 } else {
                     ToastUtil.show(activity, followBean.message);
                 }
+                EventBus.getDefault().post(new MyEvents<>());
 
             }
 
@@ -269,4 +312,20 @@ public class ExperienceActivity extends BaseActivity {
         });
     }
 
+    @Override
+    public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
+        state = 1;
+    }
+
+    @Override
+    public void onRefresh(@NonNull RefreshLayout refreshLayout) {
+
+    }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        // TODO: add setContentView(...) invocation
+        ButterKnife.bind(this);
+    }
 }

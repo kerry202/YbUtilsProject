@@ -14,7 +14,8 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dp44">
+        android:layout_height="@dimen/dp44"
+        android:visibility="gone">
 
         <TextView
             android:id="@+id/flag_tv"
@@ -28,17 +29,17 @@
 
         <RelativeLayout
             android:id="@+id/send_experience_rl"
+            android:layout_width="@dimen/dp44"
+            android:layout_height="@dimen/dp44"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:layout_width="@dimen/dp44"
-            android:layout_height="@dimen/dp44">
+            android:visibility="gone">
 
             <ImageView
-                android:layout_centerInParent="true"
                 android:id="@+id/right_arrows_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                 />
+                android:layout_centerInParent="true" />
 
         </RelativeLayout>
 
@@ -56,12 +57,12 @@
 
     </RelativeLayout>
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/dp1"
-        android:background="@color/gray_5" />
+    <!--<View-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="@dimen/dp1"-->
+        <!--android:background="@color/gray_5" />-->
 
-    <include layout="@layout/flow_layout" />
+    <!--<include layout="@layout/flow_layout" />-->
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -77,6 +78,16 @@
             android:background="@drawable/circle_white">
 
             <ImageView
+                android:visibility="gone"
+                android:id="@+id/upload1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_centerInParent="true"
+                android:scaleType="fitXY"
+                android:src="@mipmap/add_cover_icon" />
+
+            <ImageView
+                android:id="@+id/upload2"
                 android:layout_width="@dimen/dp64"
                 android:layout_height="53dp"
                 android:layout_centerInParent="true"
@@ -87,6 +98,7 @@
     </RelativeLayout>
 
     <EditText
+        android:id="@+id/title"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp44"
         android:layout_marginLeft="@dimen/dp17"
@@ -106,6 +118,7 @@
         android:background="@color/gray_5" />
 
     <EditText
+        android:id="@+id/des"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/dp17"

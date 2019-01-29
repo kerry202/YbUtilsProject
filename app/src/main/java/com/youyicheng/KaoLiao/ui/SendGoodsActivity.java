@@ -20,26 +20,41 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.google.gson.Gson;
+import com.huantansheng.easyphotos.EasyPhotos;
+import com.huantansheng.easyphotos.models.album.entity.Photo;
 import com.recycler.baseholder.BaseQuickAdapter;
 import com.recycler.baseholder.BaseViewHolder;
 import com.youyicheng.KaoLiao.R;
 import com.youyicheng.KaoLiao.adapters.MyBaseAdapter;
 import com.youyicheng.KaoLiao.base.BaseActivity;
+import com.youyicheng.KaoLiao.config.MyInterface;
+import com.youyicheng.KaoLiao.http.HttpUtils;
+import com.youyicheng.KaoLiao.http.OnDataListener;
+import com.youyicheng.KaoLiao.http.RequestState;
+import com.youyicheng.KaoLiao.module.PhotoBean;
 import com.youyicheng.KaoLiao.permission.PermissionGen;
 import com.youyicheng.KaoLiao.permission.PermissionSuccess;
 import com.youyicheng.KaoLiao.uploadphoto.factory.PhotoFactory;
 import com.youyicheng.KaoLiao.uploadphoto.result.ResultData;
 import com.youyicheng.KaoLiao.util.BitmapCompressionUtils;
+import com.youyicheng.KaoLiao.util.GlideEngine;
 import com.youyicheng.KaoLiao.util.LQRPhotoSelectUtils;
+import com.youyicheng.KaoLiao.util.Logs;
+import com.youyicheng.KaoLiao.util.ToastUtil;
 import com.youyicheng.KaoLiao.views.FlowTagView;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import butterknife.BindView;
@@ -47,6 +62,8 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class SendGoodsActivity extends BaseActivity {
+
+
     @BindView(R.id.title_back)
     RelativeLayout titleBack;
     @BindView(R.id.title_name)
@@ -55,74 +72,82 @@ public class SendGoodsActivity extends BaseActivity {
     TextView titleSend;
     @BindView(R.id.details_head_rl)
     RelativeLayout detailsHeadRl;
+    @BindView(R.id.title)
+    EditText title;
+    @BindView(R.id.des)
+    EditText des;
     @BindView(R.id.upload_photo_recycler)
     RecyclerView uploadPhotoRecycler;
-    @BindView(R.id.flow_layout)
-    FlowTagView flowLayout;
+    @BindView(R.id.price)
+    EditText price;
     @BindView(R.id.get_pay)
     TextView getPay;
+    @BindView(R.id.by_tv)
+    TextView byTv;
     @BindView(R.id.flag_tv)
     TextView flagTv;
     @BindView(R.id.right_arrows_tv)
     ImageView rightArrowsTv;
-    @BindView(R.id.by_tv)
-    TextView byTv;
-    private MyBaseAdapter adapter;
+
+//    @BindView(R.id.flow_layout)
+//    FlowTagView flowLayout;
+
+//    private MyBaseAdapter adapter;
 
     private ArrayList<String> bitmaps = new ArrayList<>();
+    private LoadMapAdapter loadMapAdapter;
 
-
-    @Override
-    protected int getLayoutId() {
-        return R.layout.send_goods_layout;
-    }
 
     @Override
     protected void initView() {
 
         uploadPhotoRecycler.setLayoutManager(new GridLayoutManager(this, 4));
-        bitmaps.add("#考研秘诀#");
-        bitmaps.add("#测试1#");
-        bitmaps.add("#测试2#");
-        bitmaps.add("#考研秘诀AAAA#");
-        bitmaps.add("#考研秘诀#");
-        bitmaps.add("#秘诀#");
-        LoadMapAdapter loadMapAdapter = new LoadMapAdapter(bitmaps);
+        bitmaps.add(null);
+        loadMapAdapter = new LoadMapAdapter(bitmaps);
 
         uploadPhotoRecycler.setAdapter(loadMapAdapter);
 
+    }
 
-        adapter = new MyBaseAdapter(bitmaps);
-        flowLayout.setAdapter(adapter);
-        flowLayout.setItemClickListener(new FlowTagView.TagItemClickListener() {
+
+    private void send() {
+
+        HashMap<String, Object> params = new HashMap<>();
+        params.put("goods_type", "1");
+        params.put("goods_name", title.getText().toString());
+        params.put("goods_img", bitmaps.get(0));
+        params.put("intro", des.getText().toString());
+        params.put("content", "CDC的程度");
+        params.put("tags_id", "1");
+        params.put("price", price.getText().toString());
+        params.put("postage_type", "" + tag);
+
+        String[] array = new String[bitmaps.size()];
+        for (int i = 0; i < bitmaps.size(); i++) {
+            array[i] = bitmaps.get(i);
+        }
+        params.put("slide_img", array);
+
+        HttpUtils.getInstance().sendRequest(activity, params, RequestState.STATE_DIALOG, MyInterface.sendGoods, new OnDataListener() {
             @Override
-            public void itemClick(int position) {
-                adapter.getItem(position);
-                adapter.notifyDataSetChanged();
+            public void onSuccess(String data) {
+                Logs.s("     发送 onNext  " + data);
+
+            }
+
+            @Override
+            public void onError(String msg) {
+                Logs.s("     发送 onError  " + msg);
+
             }
         });
+
     }
 
     @Override
     protected void initData() {
 
 
-    }
-
-
-    @OnClick({R.id.title_back, R.id.title_send, R.id.get_pay, R.id.by_tv})
-    public void onViewClicked(View view) {
-        switch (view.getId()) {
-            case R.id.title_back:
-                finish();
-                break;
-            case R.id.title_send:
-                break;
-            case R.id.get_pay:
-                break;
-            case R.id.by_tv:
-                break;
-        }
     }
 
 
@@ -136,23 +161,25 @@ public class SendGoodsActivity extends BaseActivity {
 
         @Override
         protected void convert(final BaseViewHolder helper, String item) {
-            int adapterPosition = helper.getAdapterPosition();
 
-            RelativeLayout load_map = helper.getView(R.id.load_map);
+            ImageView add = helper.getView(R.id.add);
             RelativeLayout photo_rl = helper.getView(R.id.photo_rl);
             ImageView map_close_iv = helper.getView(R.id.map_close_iv);
             ImageView photo_iv = helper.getView(R.id.photo_iv);
 
-            if (data.size() - 1 == adapterPosition) {
-                photo_rl.setVisibility(View.GONE);
+            if (item == null) {
+                photo_iv.setVisibility(View.GONE);
                 map_close_iv.setVisibility(View.GONE);
-                load_map.setVisibility(View.VISIBLE);
+                add.setVisibility(View.VISIBLE);
             } else {
-                load_map.setVisibility(View.GONE);
+                add.setVisibility(View.GONE);
                 map_close_iv.setVisibility(View.VISIBLE);
-                photo_rl.setVisibility(View.VISIBLE);
-                photo_iv.setBackgroundResource(R.mipmap.test_icon);
+                photo_iv.setVisibility(View.VISIBLE);
+                Glide.with(activity)
+                        .load(item)
+                        .into(photo_iv);
             }
+
 
             map_close_iv.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -162,7 +189,7 @@ public class SendGoodsActivity extends BaseActivity {
                 }
             });
 
-            load_map.setOnClickListener(new View.OnClickListener() {
+            photo_rl.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     showDialog();
@@ -174,62 +201,68 @@ public class SendGoodsActivity extends BaseActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        mLqrPhotoSelectUtils.attachToActivityForResult(requestCode, resultCode, data);
-    }
+        if (RESULT_OK == resultCode) {
+            //相机或相册回调
+            if (requestCode == 101) {
+                //返回对象集合：如果你需要了解图片的宽、高、大小、用户是否选中原图选项等信息，可以用这个
+//                ArrayList<Photo> resultPhotos = data.getParcelableArrayListExtra(EasyPhotos.RESULT_PHOTOS);
 
+                //返回图片地址集合：如果你只需要获取图片的地址，可以用这个
+                ArrayList<String> resultPaths = data.getStringArrayListExtra(EasyPhotos.RESULT_PATHS);
+                //返回图片地址集合时如果你需要知道用户选择图片时是否选择了原图选项，用如下方法获取
+//                boolean selectedOriginal = data.getBooleanExtra(EasyPhotos.RESULT_SELECTED_ORIGINAL, false);
 
-    private void init() {
+                Bitmap bitmapFormUri = null;
 
-        mLqrPhotoSelectUtils = new LQRPhotoSelectUtils(this, new LQRPhotoSelectUtils.PhotoSelectListener() {
-            @Override
-            public void onFinish(File outputFile, Uri outputUri) {
-                // 4、当拍照或从图库选取图片成功后回调
-                outputUri1 = outputUri;
-                try {
-                    FileInputStream fis = new FileInputStream(outputFile);
-                    Bitmap bitmap = BitmapFactory.decodeStream(fis);
+                bitmaps.clear();
+                for (String resultPath : resultPaths) {
+                    Uri pa = Uri.fromFile(new File(resultPath));//根据路径转化为uri
+                    try {
+                        bitmapFormUri = BitmapCompressionUtils.getBitmapFormUri(activity, pa);
+                        File file = BitmapCompressionUtils.compressImage(bitmapFormUri);
+                        upload(file);
 
-                    File file = BitmapCompressionUtils.compressImage(bitmap);
-                    ArrayList<File> arrayList = new ArrayList<>();
-                    arrayList.add(file);
-
-
-                } catch (Exception e) {
-
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                 }
 
+                return;
             }
-        }, false);
 
+        } else if (RESULT_CANCELED == resultCode) {
+
+        }
     }
 
 
-    private LQRPhotoSelectUtils mLqrPhotoSelectUtils;
-    Uri outputUri1 = null;//上传照片路径地址
+    private void upload(File file) {
 
-    PhotoFactory photoFactory = new PhotoFactory(this);
+        HttpUtils.getInstance().sendPhoto(activity, file, RequestState.STATE_DIALOG, MyInterface.uploadPhoto, new OnDataListener() {
+            @Override
+            public void onSuccess(String data) {
 
+                PhotoBean photoBean = new Gson().fromJson(data, PhotoBean.class);
+                bitmaps.add(photoBean.url);
+                Logs.s("     上传图片 onNext  " + photoBean);
+                loadMapAdapter.notifyDataSetChanged();
 
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        PermissionGen.onRequestPermissionsResult(this, requestCode, permissions, grantResults);
+            }
+
+            @Override
+            public void onError(String msg) {
+
+                Logs.s("     上传图片 onError  " + msg);
+
+            }
+        });
+
     }
 
-
-    @PermissionSuccess(requestCode = LQRPhotoSelectUtils.REQ_TAKE_PHOTO)
-    private void takePhoto() {
-        mLqrPhotoSelectUtils.takePhoto();
-    }
-
-    @PermissionSuccess(requestCode = LQRPhotoSelectUtils.REQ_SELECT_PHOTO)
-    private void selectPhoto() {
-        mLqrPhotoSelectUtils.selectPhoto();
-    }
-
+    private ArrayList<Photo> selectedPhotoList = new ArrayList<>();
 
     private void showDialog() {
 
-        init();
         //6.0以上动态获取权限  申请权限，REQUEST_TAKE_PHOTO_PERMISSION是自定义的常量
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED && ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this,
@@ -237,66 +270,57 @@ public class SendGoodsActivity extends BaseActivity {
                     1);
         }
 
-
-        View view = LayoutInflater.from(this).inflate(R.layout.show_add_photo_dialog, null);
-        final Dialog dialog = new AlertDialog.Builder(this, R.style.add_photo_dialog)
-                .setView(view)
-                .setCancelable(true)
-                .create();
-        dialog.show();
-
-        Window win = dialog.getWindow();
-        win.setGravity(Gravity.BOTTOM);
-        win.getDecorView().setPadding(0, 0, 0, 0);
-        WindowManager.LayoutParams lp = win.getAttributes();
-        lp.width = WindowManager.LayoutParams.MATCH_PARENT;
-        lp.height = WindowManager.LayoutParams.WRAP_CONTENT;
-        win.setAttributes(lp);
-
-
-        view.findViewById(R.id.camera_tv).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dialog.dismiss();
-                //相机
-                PermissionGen.with(activity)
-                        .addRequestCode(LQRPhotoSelectUtils.REQ_TAKE_PHOTO)
-                        .permissions(Manifest.permission.READ_EXTERNAL_STORAGE,
-                                Manifest.permission.WRITE_EXTERNAL_STORAGE,
-                                Manifest.permission.CAMERA
-                        ).request();
-            }
-        });
-        view.findViewById(R.id.photo_tv).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dialog.dismiss();
-                //相册
-                photoFactory.FromGallery()
-                        .StartForResult(new PhotoFactory.OnResultListener() {
-                            @Override
-                            public void OnCancel() {
-
-                            }
-
-                            @Override
-                            public void OnSuccess(ResultData resultData) {
-                                try {
-                                    Bitmap bitmap = resultData.GetBitmap();
-                                    File file = BitmapCompressionUtils.compressImage(bitmap);
-
-                                } catch (Exception e) {
-                                }
-                            }
-                        });
-            }
-        });
-        view.findViewById(R.id.cancle_tv).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dialog.dismiss();
-            }
-        });
+        EasyPhotos.createAlbum(this, false, GlideEngine.getInstance())
+                .setCount(8)
+                .start(101);
 
     }
+
+    private int tag = 0;
+
+    @OnClick({R.id.title_back, R.id.by_tv, R.id.get_pay, R.id.title_send})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.title_back:
+                finish();
+                break;
+            case R.id.by_tv:
+                tag = 0;
+                byTv.setBackgroundResource(R.mipmap.pay_icon);
+                byTv.setTextColor(activity.getResources().getColor(R.color.price_red));
+                getPay.setTextColor(activity.getResources().getColor(R.color.gray_333));
+                getPay.setBackgroundResource(R.drawable.circle_gray_f6);
+                break;
+            case R.id.get_pay:
+                tag = 1;
+                getPay.setTextColor(activity.getResources().getColor(R.color.price_red));
+                byTv.setTextColor(activity.getResources().getColor(R.color.gray_333));
+                getPay.setBackgroundResource(R.mipmap.pay_icon);
+                byTv.setBackgroundResource(R.drawable.circle_gray_f6);
+                break;
+            case R.id.title_send:
+
+                if (title.getText().toString().length() == 0) {
+                    ToastUtil.show(activity, "标题不能为空");
+                    return;
+                }
+                if (des.getText().toString().length() == 0) {
+                    ToastUtil.show(activity, "简介不能为空");
+                    return;
+                }
+                if (price.getText().toString().length() == 0) {
+                    ToastUtil.show(activity, "价格不能为空");
+                    return;
+                }
+                send();
+                break;
+        }
+    }
+
+    @Override
+    protected int getLayoutId() {
+        return R.layout.send_goods_layout;
+    }
+
+
 }

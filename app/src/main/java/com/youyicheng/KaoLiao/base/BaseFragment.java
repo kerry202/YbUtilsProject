@@ -46,7 +46,7 @@ public abstract class BaseFragment extends Fragment implements View.OnClickListe
     }
 
     @Subscribe
-    public void onDataEvent(MyEvents event) {
+    public void onDataEvent(Object event) {
 
     }
 

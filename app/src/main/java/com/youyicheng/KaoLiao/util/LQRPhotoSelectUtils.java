@@ -13,9 +13,7 @@ import android.provider.MediaStore;
 
 import java.io.File;
 
-/**
- * 图片选择工具类
- */
+
 public class LQRPhotoSelectUtils {
 
     public static final int REQ_TAKE_PHOTO = 10001;
@@ -23,19 +21,14 @@ public class LQRPhotoSelectUtils {
     public static final int REQ_ZOOM_PHOTO = 10003;
 
     private Activity mActivity;
-    //拍照或剪切后图片的存放位置(参考file_provider_paths.xml中的路径)
     private String imgPath = Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator + String.valueOf(System.currentTimeMillis()) + ".jpg";
-    //FileProvider的主机名：一般是包名+".fileprovider"，严格上是build.gradle中defaultConfig{}中applicationId对应的值+".fileprovider"
     private String AUTHORITIES = "packageName" + ".fileprovider";
-    private boolean mShouldCrop = false;//是否要裁剪（默认不裁剪）
+    private boolean mShouldCrop = false;
     private Uri mOutputUri = null;
     private File mInputFile;
     private File mOutputFile = null;
-
-    //剪裁图片宽高比
     private int mAspectX = 1;
     private int mAspectY = 1;
-    //剪裁图片大小
     private int mOutputX = 800;
     private int mOutputY = 480;
     PhotoSelectListener mListener;

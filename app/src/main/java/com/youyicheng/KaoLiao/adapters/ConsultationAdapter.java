@@ -21,10 +21,12 @@ public class ConsultationAdapter extends BaseQuickAdapter<GoodsListBean.DataBean
     private TextView goods_des;
     private TextView goods_tv;
     Activity activity;
+    int state;
 
-    public ConsultationAdapter(Activity activity, @Nullable List<GoodsListBean.DataBean> arrayList) {
+    public ConsultationAdapter(Activity activity, @Nullable List<GoodsListBean.DataBean> arrayList, int state) {
         super(R.layout.consultation_adapter_layout, arrayList);
         this.activity = activity;
+        this.state = state;
     }
 
 
@@ -35,10 +37,15 @@ public class ConsultationAdapter extends BaseQuickAdapter<GoodsListBean.DataBean
         goods_title = helper.getView(R.id.goods_title);
         goods_des = helper.getView(R.id.goods_des);
         goods_tv = helper.getView(R.id.goods_tv);
-        
+
         goods_title.setText(item.goods_name);
         goods_des.setText("" + item.intro);
-        goods_tv.setText("¥ " + item.price + "/" + item.comments + "份");
+        if (state == 1) {
+            goods_tv.setText("¥ " + item.price + "/" + item.comments + "分钟");
+        } else {
+            goods_tv.setText("¥ " + item.price + "/" + item.comments + "份");
+
+        }
 
         Glide.with(activity)
                 .load(item.goods_img)

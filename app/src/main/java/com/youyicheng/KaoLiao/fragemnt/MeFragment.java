@@ -31,6 +31,7 @@ import com.youyicheng.KaoLiao.module.MyBean;
 import com.youyicheng.KaoLiao.module.MyColltionBean;
 import com.youyicheng.KaoLiao.module.MyFollowBean;
 import com.youyicheng.KaoLiao.ui.ApplyActivity;
+import com.youyicheng.KaoLiao.ui.MsgActivity;
 import com.youyicheng.KaoLiao.util.Logs;
 import com.youyicheng.KaoLiao.util.MyEvents;
 import com.youyicheng.KaoLiao.util.SPUtils;
@@ -109,7 +110,7 @@ public class MeFragment extends BaseFragment implements OnRefreshListener, OnLoa
     @Override
     protected void initView() {
 
-        refreshLayout.autoRefresh();
+//        refreshLayout.autoRefresh();
         refreshLayout.setOnRefreshListener(this);
         refreshLayout.setOnLoadMoreListener(this);
 
@@ -142,58 +143,62 @@ public class MeFragment extends BaseFragment implements OnRefreshListener, OnLoa
 
 
     public void hideLine() {
+
         colltionLine.setVisibility(View.INVISIBLE);
         followLine.setVisibility(View.INVISIBLE);
         orderLine.setVisibility(View.INVISIBLE);
         sendLine.setVisibility(View.INVISIBLE);
+
     }
 
 
     @Override
     protected void initData() {
 
-        getMyColltion();
-        getFollowData();
+//        getMyColltion();
+//        getFollowData();
 
-        String token = (String) SPUtils.getParam(getActivity(), "token", "");
         HashMap<String, String> params = new HashMap<>();
-        params.put("token", token);
 
-        HttpUtils.getInstance().sendPhoto(getActivity(), params, RequestState.STATE_DIALOG, MyInterface.myData, new OnDataListener() {
-            @Override
-            public void onSuccess(String data) {
-                refreshLayout.finishRefresh();  //下拉刷新完成
-
-                MyBean myBean = new Gson().fromJson(data, MyBean.class);
-                if (myBean != null) {
-                    if (myBean.data != null) {
-                        RequestOptions mRequestOptions = RequestOptions.circleCropTransform()
-                                .diskCacheStrategy(DiskCacheStrategy.NONE)
-                                .skipMemoryCache(true);
-                        Glide.with(getActivity())
-                                .load(myBean.data.head_img)
-                                .apply(mRequestOptions)
-                                .into(userPhoto);
-
-                        userName.setText(myBean.data.nickname);
-                        userFlag.setText("" + myBean.data.sign);
-
-                    }
-
-                } else {
-                    ToastUtil.show(getActivity(), myBean.message);
-                }
-                Logs.s("     我的信息 onNext  " + myBean);
-
-            }
-
-            @Override
-            public void onError(String msg) {
-
-                Logs.s("     我的信息 onError  " + msg);
-
-            }
-        });
+//        HttpUtils.getInstance().sendRequest(getActivity(), params, RequestState.STATE_DIALOG, MyInterface.myData, new OnDataListener() {
+//            @Override
+//            public void onSuccess(String data) {
+//                refreshLayout.finishRefresh();
+//
+//                MyBean myBean = new Gson().fromJson(data, MyBean.class);
+//                if (myBean != null) {
+//                    if (myBean.data != null) {
+//
+//                        SPUtils.setParam(getActivity(), "nickname", myBean.data.nickname);
+//                        SPUtils.setParam(getActivity(), "head_img", myBean.data.head_img);
+//
+//                        RequestOptions mRequestOptions = RequestOptions.circleCropTransform()
+//                                .diskCacheStrategy(DiskCacheStrategy.NONE)
+//                                .skipMemoryCache(true);
+//                        Glide.with(getActivity())
+//                                .load(myBean.data.head_img)
+//                                .apply(mRequestOptions)
+//                                .into(userPhoto);
+//
+//                        userName.setText(myBean.data.nickname);
+//                        userFlag.setText("" + myBean.data.sign);
+//
+//                    }
+//
+//                } else {
+//                    ToastUtil.show(getActivity(), myBean.message);
+//                }
+//                Logs.s("     我的信息 onNext  " + myBean);
+//
+//            }
+//
+//            @Override
+//            public void onError(String msg) {
+//
+//                Logs.s("     我的信息 onError  " + msg);
+//
+//            }
+//        });
 
     }
 
@@ -269,7 +274,7 @@ public class MeFragment extends BaseFragment implements OnRefreshListener, OnLoa
 
                 break;
             case R.id.me_msg:
-                startActivity(new Intent(getActivity(), ApplyActivity.class));
+                startActivity(new Intent(getActivity(), MsgActivity.class));
                 break;
             case R.id.me_colltion_ll:
                 hideLine();

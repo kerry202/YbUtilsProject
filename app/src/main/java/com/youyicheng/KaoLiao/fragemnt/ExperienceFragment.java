@@ -25,9 +25,13 @@ import com.youyicheng.KaoLiao.http.RequestState;
 import com.youyicheng.KaoLiao.module.GoodsListBean;
 import com.youyicheng.KaoLiao.module.RegisterModule;
 import com.youyicheng.KaoLiao.ui.ExperienceActivity;
+import com.youyicheng.KaoLiao.util.HomeEvents;
 import com.youyicheng.KaoLiao.util.Logs;
+import com.youyicheng.KaoLiao.util.MyEvents;
 import com.youyicheng.KaoLiao.util.SPUtils;
 import com.youyicheng.KaoLiao.util.ToastUtil;
+
+import org.greenrobot.eventbus.Subscribe;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -53,6 +57,11 @@ public class ExperienceFragment extends BaseFragment implements OnRefreshListene
         return R.layout.fragment_experience_layout;
     }
 
+    @Subscribe
+    public void onEvent(HomeEvents event) {
+        initData();
+
+    }
 
     @Override
     protected void initView() {
@@ -80,12 +89,15 @@ public class ExperienceFragment extends BaseFragment implements OnRefreshListene
 
     }
 
+    private int pager = 0;
+
     @Override
     protected void initData() {
 
         HashMap<String, String> params = new HashMap<>();
         params.put("goods_type", "0");
         params.put("order", order);
+        params.put("page", pager + "");
 
         HttpUtils.getInstance().sendRequest(getActivity(), params, RequestState.STATE_DIALOG, MyInterface.GoogsList, new OnDataListener() {
             @Override
@@ -122,6 +134,7 @@ public class ExperienceFragment extends BaseFragment implements OnRefreshListene
     @Override
     public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
         state = 2;
+        pager++;
         initData();
         Logs.s(" ExperienceFragment  onLoadMore   ");
     }

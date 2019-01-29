@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+
+    <dimen name="sticker_text_size_easy_photos">16sp</dimen>
+    <dimen name="toolbar_size_easy_photos">42dp</dimen>
+
     <dimen name="dp1">1dp</dimen>
     <dimen name="dp2">2dp</dimen>
     <dimen name="dp3">3dp</dimen>
