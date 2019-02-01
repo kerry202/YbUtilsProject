@@ -11,20 +11,21 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.youyicheng.KaoLiao.listener.HomeListener;
 import com.youyicheng.KaoLiao.R;
 import com.youyicheng.KaoLiao.adapters.HomePagerAdapter;
 import com.youyicheng.KaoLiao.base.BaseFragment;
-import com.youyicheng.KaoLiao.logs.KLog;
 import com.youyicheng.KaoLiao.ui.MsgActivity;
 import com.youyicheng.KaoLiao.ui.SearshActivity;
 import com.youyicheng.KaoLiao.util.DialogUtils;
+import com.youyicheng.KaoLiao.util.Logs;
 
 import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.OnClick;
 
-public class HomeFragment extends BaseFragment {
+public class HomeFragment extends BaseFragment implements HomeListener {
     @BindView(R.id.home_sort)
     ImageView homeSort;
     @BindView(R.id.home_msg)
@@ -56,6 +57,9 @@ public class HomeFragment extends BaseFragment {
 
     private ArrayList<Fragment> fragments = new ArrayList<>();
     private ArrayList<String> titles = new ArrayList<>();
+    private ExperienceFragment experienceFragment;
+    private ConsultationFragment consultationFragment;
+    private DataFragment dataFragment;
 
     @Override
     protected int getLayoutId() {
@@ -66,9 +70,9 @@ public class HomeFragment extends BaseFragment {
     @Override
     protected void initView() {
 
-        ExperienceFragment experienceFragment = new ExperienceFragment();
-        ConsultationFragment consultationFragment = new ConsultationFragment();
-        DataFragment dataFragment = new DataFragment();
+        experienceFragment = new ExperienceFragment();
+        consultationFragment = new ConsultationFragment();
+        dataFragment = new DataFragment();
 
         fragments.add(experienceFragment);
         titles.add("经验帖");
@@ -105,6 +109,74 @@ public class HomeFragment extends BaseFragment {
         });
 
     }
+
+
+    @Override
+    protected void initData() {
+
+    }
+
+    private int count = 0;
+
+    @OnClick({R.id.home_sort, R.id.home_msg, R.id.home_searsh, R.id.home_jyt_ll, R.id.home_1v1_ll, R.id.home_data_ll})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.home_sort:
+                DialogUtils.showDialog(getActivity(), homeSort, this);
+
+                break;
+            case R.id.home_msg:
+                startActivity(new Intent(getActivity(), MsgActivity.class));
+                break;
+            case R.id.home_searsh:
+                Intent intent = new Intent(getActivity(), SearshActivity.class);
+                intent.putExtra("state", count);
+                startActivity(intent);
+                break;
+
+            case R.id.home_jyt_ll:
+                count = 0;
+                homePager.setCurrentItem(count);
+                setColor1();
+                break;
+            case R.id.home_1v1_ll:
+                count = 1;
+                homePager.setCurrentItem(count);
+                setColor2();
+                break;
+            case R.id.home_data_ll:
+                count = 2;
+                homePager.setCurrentItem(count);
+                setColor3();
+                break;
+        }
+    }
+
+
+    @Override
+    public void remen(int state) {
+        Logs.s("remen");
+        if (count == 0) {
+            experienceFragment.newData(0);
+        } else if (count == 1) {
+            consultationFragment.newData(0);
+        } else {
+            dataFragment.newData(0);
+        }
+    }
+
+    @Override
+    public void newData(int state) {
+        Logs.s("newData");
+        if (count == 0) {
+            experienceFragment.newData(1);
+        } else if (count == 1) {
+            consultationFragment.newData(1);
+        } else {
+            dataFragment.newData(1);
+        }
+    }
+
 
     private void setColor3() {
         home_jyt__line.setVisibility(View.INVISIBLE);
@@ -154,44 +226,5 @@ public class HomeFragment extends BaseFragment {
         tp3.setFakeBoldText(false);
     }
 
-    @Override
-    protected void initData() {
 
-    }
-
-    private int count = 0;
-
-    @OnClick({R.id.home_sort, R.id.home_msg, R.id.home_searsh, R.id.home_jyt_ll, R.id.home_1v1_ll, R.id.home_data_ll})
-    public void onViewClicked(View view) {
-        switch (view.getId()) {
-            case R.id.home_sort:
-                DialogUtils.showDialog(getActivity(), homeSort);
-
-                break;
-            case R.id.home_msg:
-                startActivity(new Intent(getActivity(), MsgActivity.class));
-                break;
-            case R.id.home_searsh:
-                Intent intent = new Intent(getActivity(), SearshActivity.class);
-                intent.putExtra("state",  count);
-                startActivity(intent);
-                break;
-
-            case R.id.home_jyt_ll:
-                count = 0;
-                homePager.setCurrentItem(count);
-                setColor1();
-                break;
-            case R.id.home_1v1_ll:
-                count = 1;
-                homePager.setCurrentItem(count);
-                setColor2();
-                break;
-            case R.id.home_data_ll:
-                count = 2;
-                homePager.setCurrentItem(count);
-                setColor3();
-                break;
-        }
-    }
 }

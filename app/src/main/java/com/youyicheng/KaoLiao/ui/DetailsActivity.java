@@ -1,6 +1,7 @@
 package com.youyicheng.KaoLiao.ui;
 
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
@@ -134,7 +135,7 @@ public class DetailsActivity extends BaseActivity {
 
     @Override
     protected void initData() {
-
+        addColltion();
     }
 
 
@@ -178,7 +179,16 @@ public class DetailsActivity extends BaseActivity {
                 if (colltionBean.data.is_favorite) {
                     ToastUtil.show(activity, "收藏成功");
                     detailsColletionTv.setText("已收藏");
+
+                    Drawable drawable = getResources().getDrawable(R.mipmap.colltion_yes_icon);
+                    drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
+                    detailsColletionTv.setCompoundDrawables(null, drawable, null, null);
+
                 } else {
+
+                    Drawable drawable = getResources().getDrawable(R.mipmap.colletion_icon);
+                    drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
+                    detailsColletionTv.setCompoundDrawables(null, drawable, null, null);
                     ToastUtil.show(activity, "取消收藏");
                     detailsColletionTv.setText("收藏");
                 }

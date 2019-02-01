@@ -110,7 +110,7 @@ public class MeFragment extends BaseFragment implements OnRefreshListener, OnLoa
     @Override
     protected void initView() {
 
-//        refreshLayout.autoRefresh();
+        refreshLayout.autoRefresh();
         refreshLayout.setOnRefreshListener(this);
         refreshLayout.setOnLoadMoreListener(this);
 
@@ -155,50 +155,50 @@ public class MeFragment extends BaseFragment implements OnRefreshListener, OnLoa
     @Override
     protected void initData() {
 
-//        getMyColltion();
-//        getFollowData();
+        getMyColltion();
+        getFollowData();
 
         HashMap<String, String> params = new HashMap<>();
 
-//        HttpUtils.getInstance().sendRequest(getActivity(), params, RequestState.STATE_DIALOG, MyInterface.myData, new OnDataListener() {
-//            @Override
-//            public void onSuccess(String data) {
-//                refreshLayout.finishRefresh();
-//
-//                MyBean myBean = new Gson().fromJson(data, MyBean.class);
-//                if (myBean != null) {
-//                    if (myBean.data != null) {
-//
-//                        SPUtils.setParam(getActivity(), "nickname", myBean.data.nickname);
-//                        SPUtils.setParam(getActivity(), "head_img", myBean.data.head_img);
-//
-//                        RequestOptions mRequestOptions = RequestOptions.circleCropTransform()
-//                                .diskCacheStrategy(DiskCacheStrategy.NONE)
-//                                .skipMemoryCache(true);
-//                        Glide.with(getActivity())
-//                                .load(myBean.data.head_img)
-//                                .apply(mRequestOptions)
-//                                .into(userPhoto);
-//
-//                        userName.setText(myBean.data.nickname);
-//                        userFlag.setText("" + myBean.data.sign);
-//
-//                    }
-//
-//                } else {
-//                    ToastUtil.show(getActivity(), myBean.message);
-//                }
-//                Logs.s("     我的信息 onNext  " + myBean);
-//
-//            }
-//
-//            @Override
-//            public void onError(String msg) {
-//
-//                Logs.s("     我的信息 onError  " + msg);
-//
-//            }
-//        });
+        HttpUtils.getInstance().sendRequest(getActivity(), params, RequestState.STATE_DIALOG, MyInterface.myData, new OnDataListener() {
+            @Override
+            public void onSuccess(String data) {
+                refreshLayout.finishRefresh();
+
+                MyBean myBean = new Gson().fromJson(data, MyBean.class);
+                if (myBean != null) {
+                    if (myBean.data != null) {
+
+                        SPUtils.setParam(getActivity(), "nickname", myBean.data.nickname);
+                        SPUtils.setParam(getActivity(), "head_img", myBean.data.head_img);
+
+                        RequestOptions mRequestOptions = RequestOptions.circleCropTransform()
+                                .diskCacheStrategy(DiskCacheStrategy.NONE)
+                                .skipMemoryCache(true);
+                        Glide.with(getActivity())
+                                .load(myBean.data.head_img)
+                                .apply(mRequestOptions)
+                                .into(userPhoto);
+
+                        userName.setText(myBean.data.nickname);
+                        userFlag.setText("" + myBean.data.sign);
+
+                    }
+
+                } else {
+                    ToastUtil.show(getActivity(), myBean.message);
+                }
+                Logs.s("     我的信息 onNext  " + myBean);
+
+            }
+
+            @Override
+            public void onError(String msg) {
+
+                Logs.s("     我的信息 onError  " + msg);
+
+            }
+        });
 
     }
 

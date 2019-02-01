@@ -103,12 +103,10 @@ public class ConsultationFragment extends BaseFragment implements OnRefreshListe
         });
     }
 
-    @Override
-    protected void initData() {
-
+    public void newData(int i) {
         HashMap<String, String> params = new HashMap<>();
         params.put("goods_type", "2");
-        params.put("order", "0");
+        params.put("order", "" + i);
         HttpUtils.getInstance().sendRequest(getActivity(), params, RequestState.STATE_DIALOG, MyInterface.GoogsList, new OnDataListener() {
             @Override
             public void onSuccess(String data) {
@@ -148,10 +146,62 @@ public class ConsultationFragment extends BaseFragment implements OnRefreshListe
         });
     }
 
+    int pager = 0;
+
+    @Override
+    protected void initData() {
+
+        HashMap<String, String> params = new HashMap<>();
+        params.put("goods_type", "2");
+        params.put("order", "0");
+        params.put("page", pager + "");
+        HttpUtils.getInstance().sendRequest(getActivity(), params, RequestState.STATE_REFRESH, MyInterface.GoogsList, new OnDataListener() {
+            @Override
+            public void onSuccess(String data) {
+                GoodsListBean registerModule = new Gson().fromJson(data, GoodsListBean.class);
+                Logs.s("     商品列表 onNext  " + registerModule);
+                if (registerModule != null && registerModule.result.equals("SUCCESS")) {
+                    if (registerModule.data != null && registerModule.data.size() > 0) {
+//                        noDataRl.setVisibility(View.GONE);
+//                        experienceRecycler.setVisibility(View.VISIBLE);
+                        if (state == 1) {
+                            arrayList = registerModule.data;
+                            consultationAdapter.setNewData(arrayList);
+                            refreshLayout.finishRefresh();
+                        } else if (state == 2) {
+                            arrayList.addAll(registerModule.data);
+                            consultationAdapter.setNewData(arrayList);
+                            refreshLayout.finishLoadMore();
+                        } else {
+                            arrayList = registerModule.data;
+                            consultationAdapter.setNewData(arrayList);
+                        }
+                    } else {
+
+//                        noDataRl.setVisibility(View.VISIBLE);
+//                        experienceRecycler.setVisibility(View.GONE);
+                    }
+
+
+                } else {
+                }
+                refreshLayout.finishLoadMore();
+                state = 0;
+            }
+
+            @Override
+            public void onError(String msg) {
+                Logs.s("     商品列表 onError  " + msg);
+                state = 0;
+            }
+        });
+    }
+
 
     @Override
     public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
         state = 2;
+        pager++;
         initData();
         Logs.s(" ConsultationFragment  onLoadMore   ");
     }
@@ -159,6 +209,7 @@ public class ConsultationFragment extends BaseFragment implements OnRefreshListe
     @Override
     public void onRefresh(@NonNull RefreshLayout refreshLayout) {
         state = 1;
+        pager = 0;
         initData();
         Logs.s(" ConsultationFragment  onRefresh   ");
     }

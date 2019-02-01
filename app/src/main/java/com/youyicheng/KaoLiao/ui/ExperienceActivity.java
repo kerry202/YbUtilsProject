@@ -2,6 +2,7 @@ package com.youyicheng.KaoLiao.ui;
 
 
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.LinearLayoutManager;
@@ -26,9 +27,11 @@ import com.youyicheng.KaoLiao.config.MyInterface;
 import com.youyicheng.KaoLiao.http.HttpUtils;
 import com.youyicheng.KaoLiao.http.OnDataListener;
 import com.youyicheng.KaoLiao.http.RequestState;
+import com.youyicheng.KaoLiao.module.ColltionBean;
 import com.youyicheng.KaoLiao.module.CommentBean;
 import com.youyicheng.KaoLiao.module.DetailBean;
 import com.youyicheng.KaoLiao.module.FollowBean;
+import com.youyicheng.KaoLiao.module.LikesBean;
 import com.youyicheng.KaoLiao.util.Logs;
 import com.youyicheng.KaoLiao.util.MyEvents;
 import com.youyicheng.KaoLiao.util.SPUtils;
@@ -78,6 +81,11 @@ public class ExperienceActivity extends BaseActivity implements OnRefreshListene
     TextView detailsConsultationTv;
     @BindView(R.id.details_data_tv)
     TextView detailsDataTv;
+    @BindView(R.id.addlieks_tv)
+    TextView addlieks_tv;
+
+    @BindView(R.id.colltion_tv)
+    TextView colltion_tv;
 
     @BindView(R.id.student_detail)
     RelativeLayout student_detail;
@@ -142,6 +150,8 @@ public class ExperienceActivity extends BaseActivity implements OnRefreshListene
 
     @Override
     protected void initData() {
+        addColltion();
+        addLike();
         HashMap<String, String> params = new HashMap<>();
         params.put("goods_id", goods_id);
         HttpUtils.getInstance().sendRequest(activity, params, RequestState.STATE_DIALOG, MyInterface.goods_detail, new OnDataListener() {
@@ -243,6 +253,9 @@ public class ExperienceActivity extends BaseActivity implements OnRefreshListene
                 addComment();
                 break;
             case R.id.live_rl:
+
+                addLike();
+
                 break;
 
             case R.id.details_add_follow:
@@ -253,7 +266,7 @@ public class ExperienceActivity extends BaseActivity implements OnRefreshListene
                 }
                 break;
             case R.id.colltion_rl:
-
+                addColltion();
                 break;
             case R.id.student_detail:
                 startActivity(new Intent(activity, StudentDetailActivity.class));
@@ -261,12 +274,83 @@ public class ExperienceActivity extends BaseActivity implements OnRefreshListene
         }
     }
 
+    private void addColltion() {
+        HashMap<String, String> params = new HashMap<>();
+        String token = (String) SPUtils.getParam(activity, "token", "");
+        params.put("token", token);
+        params.put("goods_id", goods_id + "");
+        HttpUtils.getInstance().sendRequest(activity, params, RequestState.STATE_DIALOG, MyInterface.addColltion, new OnDataListener() {
+            @Override
+            public void onSuccess(String data) {
+
+                ColltionBean colltionBean = new Gson().fromJson(data, ColltionBean.class);
+                if (colltionBean.data.is_favorite) {
+                    ToastUtil.show(activity, "收藏成功");
+                    colltion_tv.setText("已收藏");
+
+                    Drawable drawable = getResources().getDrawable(R.mipmap.colltion_yes_icon);
+                    drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
+                    colltion_tv.setCompoundDrawables(drawable, null, null, null);
+
+                } else {
+
+                    Drawable drawable = getResources().getDrawable(R.mipmap.colltion_white_icon);
+                    drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
+                    colltion_tv.setCompoundDrawables(drawable, null, null, null);
+                    ToastUtil.show(activity, "取消收藏");
+                    colltion_tv.setText("收藏");
+                }
+                EventBus.getDefault().post(new MyEvents<>());
+                Logs.s("     收藏 onNext  " + data);
+
+            }
+
+            @Override
+            public void onError(String msg) {
+                Logs.s("     收藏 onError  " + msg);
+
+            }
+        });
+    }
+
+    private void addLike() {
+
+        HashMap<String, String> params = new HashMap<>();
+        params.put("goods_id", goods_id);
+        HttpUtils.getInstance().sendRequest(activity, params, RequestState.STATE_DIALOG, MyInterface.addLikes, new OnDataListener() {
+            @Override
+            public void onSuccess(String data) {
+                Logs.s("     点赞 onNext  " + data);
+
+                LikesBean likesBean = new Gson().fromJson(data, LikesBean.class);
+
+                if (likesBean != null) {
+                    if (likesBean.data.is_likes) {
+                        Drawable drawable = getResources().getDrawable(R.mipmap.likes_yes_icon);
+                        drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
+                        addlieks_tv.setCompoundDrawables(drawable, null, null, null);
+                    } else {
+                        Drawable drawable = getResources().getDrawable(R.mipmap.live_whie_icon);
+                        drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
+                        addlieks_tv.setCompoundDrawables(drawable, null, null, null);
+                    }
+                }
+
+            }
+
+            @Override
+            public void onError(String msg) {
+                Logs.s("     点赞 onError  " + msg);
+
+            }
+        });
+    }
+
     private void goFoloow(String url) {
 
         String token = (String) SPUtils.getParam(activity, "token", "");
         String uid = (String) SPUtils.getParam(activity, "uid", "");
         HashMap<String, String> params = new HashMap<>();
-        params.put("token", token);
         params.put("uid", uid);
         HttpUtils.getInstance().sendRequest(activity, params, RequestState.STATE_DIALOG, url, new OnDataListener() {
             @Override

@@ -36,6 +36,7 @@ public class MyInterface {
 
     public static final String apply = "Senior/apply";
     public static final String sendGoods = "Goods/add";
+    public static final String addLikes = "Goods/addLikes";
 
 
 }

@@ -44,26 +44,26 @@ public class FollowAdapter extends BaseQuickAdapter<MyFollowBean.DataBean, BaseV
     protected void convert(BaseViewHolder helper, MyFollowBean.DataBean item) {
 
 
-//        adapterPosition = helper.getAdapterPosition();
-//
-//        ImageView msg_photo = helper.getView(R.id.msg_photo);
-//        TextView title1 = helper.getView(R.id.title1);
-//        TextView des2 = helper.getView(R.id.des2);
-//        TextView cancle_follow = helper.getView(R.id.cancle_follow);
-//
-//        Glide.with(activity)
-//                .load(item.head_img)
-//                .into(msg_photo);
-//        title1.setText(item.nickname);
-//        des2.setText(item.fans + "");
-//
-//        cancle_follow.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                goFoloow(MyInterface.delFollow);
-//
-//            }
-//        });
+        adapterPosition = helper.getAdapterPosition();
+
+        ImageView msg_photo = helper.getView(R.id.msg_photo);
+        TextView title1 = helper.getView(R.id.title1);
+        TextView des2 = helper.getView(R.id.des2);
+        TextView cancle_follow = helper.getView(R.id.cancle_follow);
+
+        Glide.with(activity)
+                .load(item.head_img)
+                .into(msg_photo);
+        title1.setText(item.nickname);
+        des2.setText(item.fans + "");
+
+        cancle_follow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goFoloow(MyInterface.delFollow);
+
+            }
+        });
     }
 
     private void goFoloow(String url) {

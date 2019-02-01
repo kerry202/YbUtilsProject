@@ -51,10 +51,12 @@ public class DataFragment extends BaseFragment implements OnRefreshListener, OnL
 
 
     private String order = "0";
+
     @Subscribe
     public void onEvent(HomeEvents event) {
         initData();
     }
+
     public void setNewData(List<GoodsListBean.DataBean> data) {
         this.arrayList = data;
     }
@@ -76,7 +78,7 @@ public class DataFragment extends BaseFragment implements OnRefreshListener, OnL
         refreshLayout.setOnLoadMoreListener(this);
         experienceRecycler.setLayoutManager(new GridLayoutManager(getActivity(), 2));
 
-        consultationAdapter = new ConsultationAdapter(getActivity(), arrayList,0);
+        consultationAdapter = new ConsultationAdapter(getActivity(), arrayList, 0);
         experienceRecycler.setAdapter(consultationAdapter);
 
         consultationAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
@@ -91,11 +93,10 @@ public class DataFragment extends BaseFragment implements OnRefreshListener, OnL
         });
     }
 
-    @Override
-    protected void initData() {
+    public void newData(int i) {
         HashMap<String, String> params = new HashMap<>();
         params.put("goods_type", "1");
-        params.put("order", order);
+        params.put("order", i + "");
         HttpUtils.getInstance().sendRequest(getActivity(), params, RequestState.STATE_DIALOG, MyInterface.GoogsList, new OnDataListener() {
             @Override
             public void onSuccess(String data) {
@@ -130,9 +131,54 @@ public class DataFragment extends BaseFragment implements OnRefreshListener, OnL
 
     }
 
+    int pager = 0;
+
+    @Override
+    protected void initData() {
+        HashMap<String, String> params = new HashMap<>();
+        params.put("goods_type", "1");
+        params.put("order", order);
+        params.put("page", pager + "");
+        HttpUtils.getInstance().sendRequest(getActivity(), params, RequestState.STATE_REFRESH, MyInterface.GoogsList, new OnDataListener() {
+            @Override
+            public void onSuccess(String data) {
+                GoodsListBean registerModule = new Gson().fromJson(data, GoodsListBean.class);
+                Logs.s("     商品列表 onNext  " + registerModule);
+                if (registerModule != null && registerModule.result.equals("SUCCESS")) {
+                    if (state == 1) {
+                        arrayList = registerModule.data;
+                        consultationAdapter.setNewData(arrayList);
+                        refreshLayout.finishRefresh();
+                    } else if (state == 2) {
+                        arrayList.addAll(registerModule.data);
+                        consultationAdapter.setNewData(arrayList);
+                        refreshLayout.finishLoadMore();
+                    } else {
+                        arrayList = registerModule.data;
+                        consultationAdapter.setNewData(arrayList);
+                    }
+
+                } else {
+                    ToastUtil.show(getActivity(), registerModule.message);
+                }
+                state = 0;
+                refreshLayout.finishLoadMore();
+
+            }
+
+            @Override
+            public void onError(String msg) {
+                Logs.s("     商品列表 onError  " + msg);
+                state = 0;
+            }
+        });
+
+    }
+
     @Override
     public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
         state = 2;
+        pager++;
         initData();
         Logs.s(" ExperienceFragment  onLoadMore   ");
     }
@@ -140,6 +186,7 @@ public class DataFragment extends BaseFragment implements OnRefreshListener, OnL
     @Override
     public void onRefresh(@NonNull RefreshLayout refreshLayout) {
         state = 1;
+        pager = 0;
         initData();
         Logs.s(" ExperienceFragment  onRefresh   ");
     }

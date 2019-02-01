@@ -99,6 +99,46 @@ public class ExperienceFragment extends BaseFragment implements OnRefreshListene
         params.put("order", order);
         params.put("page", pager + "");
 
+        HttpUtils.getInstance().sendRequest(getActivity(), params, RequestState.STATE_REFRESH, MyInterface.GoogsList, new OnDataListener() {
+            @Override
+            public void onSuccess(String data) {
+                GoodsListBean registerModule = new Gson().fromJson(data, GoodsListBean.class);
+                Logs.s("     商品列表 onNext  " + registerModule);
+                if (registerModule != null && registerModule.result.equals("SUCCESS")) {
+                    if (state == 1) {
+                        arrayList = registerModule.data;
+                        experienceAdapter.setNewData(arrayList);
+                        refreshLayout.finishRefresh();
+                    } else if (state == 2) {
+                        arrayList.addAll(registerModule.data);
+                        experienceAdapter.setNewData(arrayList);
+                        refreshLayout.finishLoadMore();
+                    } else {
+                        arrayList = registerModule.data;
+                        experienceAdapter.setNewData(arrayList);
+                    }
+                } else {
+                    ToastUtil.show(getActivity(), registerModule.message);
+                }
+                refreshLayout.finishLoadMore();
+                state = 0;
+            }
+
+            @Override
+            public void onError(String msg) {
+                Logs.s("     商品列表 onError  " + msg);
+                state = 0;
+            }
+        });
+    }
+
+
+    public void newData(int i) {
+        HashMap<String, String> params = new HashMap<>();
+        params.put("goods_type", "0");
+        params.put("order", i + "");
+        params.put("page", pager + "");
+
         HttpUtils.getInstance().sendRequest(getActivity(), params, RequestState.STATE_DIALOG, MyInterface.GoogsList, new OnDataListener() {
             @Override
             public void onSuccess(String data) {
@@ -130,6 +170,7 @@ public class ExperienceFragment extends BaseFragment implements OnRefreshListene
             }
         });
     }
+
 
     @Override
     public void onLoadMore(@NonNull RefreshLayout refreshLayout) {

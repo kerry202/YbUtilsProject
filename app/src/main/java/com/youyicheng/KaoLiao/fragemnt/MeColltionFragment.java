@@ -50,8 +50,6 @@ public class MeColltionFragment extends BaseFragment implements OnRefreshListene
     protected void initView() {
 
         experienceRecycler.setLayoutManager(new LinearLayoutManager(getActivity()));
-        arrayList.add(null);
-        arrayList.add(null);
         detailsAdapter = new MyColltionAdapter(getActivity(), arrayList);
 
         experienceRecycler.setAdapter(detailsAdapter);

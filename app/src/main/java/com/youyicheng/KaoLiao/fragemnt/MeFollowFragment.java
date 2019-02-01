@@ -30,11 +30,9 @@ public class MeFollowFragment extends BaseFragment {
 
     }
 
-    List<MyFollowBean.DataBean> arrayLista = new ArrayList<>();
 
     public void setData(List<MyFollowBean.DataBean> arrayList) {
-        arrayLista.add(null);
-        detailsAdapter = new FollowAdapter(getActivity(), arrayLista);
+        detailsAdapter = new FollowAdapter(getActivity(), arrayList);
         experienceRecycler.setAdapter(detailsAdapter);
     }
 
